@@ -1,0 +1,85 @@
+﻿@model MotoCredito.Entity.Prestamo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Prestamo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Clientes.Nombres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Clientes.Nombres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Modelo.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modelo.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NoChasis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoChasis)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NoPlaca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoPlaca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaApertura)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaApertura)
+        </dd>
+
+       
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MontoPrestamo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MontoPrestamo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tiempo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tiempo)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BalanceRestante)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BalanceRestante)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

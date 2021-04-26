@@ -1,0 +1,126 @@
+﻿@{
+    ViewBag.Title = "Reporte de Pagos";
+}
+
+<h3>Reporte de Pagos</h3>
+
+<div class="mini-card">
+    <div class="form-row">
+        <h5>Tipo de Rango</h5>
+        <div class="form-group col-md-3">
+       
+            <input type="radio" id="rango" onclick="checkBuscarFecha()" name="tipoBusqueda" value="rango" checked>
+            <label for="rango">Seleccionar Rango de fecha</label><br>
+            <input type="radio" onclick="checkToday()" id="diario" name="tipoBusqueda" value="diario">
+            <label for="diario">Diario</label><br>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label>Desde</label>
+            <input type="date" class="form-control" id="desde" />
+        </div>
+        <div class="form-group col-md-3">
+            <label>Hasta</label>
+            <input type="date" class="form-control" id="hasta" />
+        </div>
+        <div class="form-group col-md-3">
+            <button class="btn btn-default" id="btnBuscar">Buscar</button>
+        </div>
+    </div>
+</div>
+
+<div>
+    <table class="table" id="example">
+        <thead>
+            <tr>
+                @*<th>
+            No. Recibo
+        </th>
+        <th>
+            Nombre Cliente
+        </th>
+        <th>
+            Capital Pagado
+        </th>
+        <th>
+            Interes Pagado
+        </th>
+        <th>
+            Mora Pagada
+        </th>
+        <th>
+            Abono Pagado
+        </th>*@
+                <th>
+                    Numero de Cuota
+                </th>
+                <th>
+                    Numero de Prestamo
+                </th>
+                <th>
+                    Fecha de Pago
+                </th>
+                <th>
+                    Capital Cobrado
+                </th>
+                <th>
+                    Interes Cobrado
+                </th>
+                <th>
+                    Mora Cobrada
+                </th>
+                <th>
+                    Abono
+                </th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+        </tbody>
+    </table>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+
+        $("#btnBuscar").click(function () {
+            var desde = $("#desde").val();
+            var hasta = $("#hasta").val();
+            var today = $("#diario").is(':checked');
+
+
+
+            $.post("getPagos", { desde: desde, hasta: hasta, today: today }, function (data) {
+              
+                $('#example').DataTable({
+                    data: data,
+                    columns: [
+                        { data: 'numeroCuota' },
+                        { data: 'prestamoNumero' },
+                        { data: 'fechaPago' },
+                        { data: 'capital' },
+                        { data: 'interes' },
+                        { data: 'mora' },
+                        
+                        { data: 'abono' }
+                    ]
+                });
+
+            });
+        });
+
+
+
+        function checkToday() {
+            $("#desde").prop("disabled", true);
+            $("#hasta").prop("disabled", true);
+        }
+
+        function checkBuscarFecha() {
+            $("#desde").prop("disabled", false);
+            $("#hasta").prop("disabled", false);
+        }
+
+    </script>
+}

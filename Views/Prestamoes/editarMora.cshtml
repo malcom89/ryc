@@ -1,0 +1,77 @@
+﻿@model IEnumerable<MotoCredito.Entity.Pagos>
+
+
+
+<label>No. Prestamo:</label> @Html.DisplayFor(model => model.First().IdPrestamo)
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NoPago)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Mora)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.FechaVencimiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sobrante)
+        </th>
+        <th>
+            <label>Mora a Cobrar</label>
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoPago)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mora)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaVencimiento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sobrante)
+            </td>
+            <td>
+                <input type="text" id="Monto_@item.NoPago" value="@item.Mora" class="form-control" />
+            </td>
+            <td>
+                <button class="btn btn-success" onclick="AplicarDescuento(@item.NoPago)" >Aplicar</button>
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        function AplicarDescuento(noPago) {
+            var send = {
+                montoMora: $("#Monto_" + noPago).val(),
+                noPago: noPago,
+                noPrestamo: @Model.First().IdPrestamo
+
+        }
+
+            $.post("aplicarDescuentoMora", send, function (data) {
+
+                if (data.success) {
+                    alert(data.menssage);
+                }
+            })
+        }
+    </script>
+    }

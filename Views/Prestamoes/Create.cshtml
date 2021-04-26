@@ -1,0 +1,554 @@
+﻿@model MotoCredito.ViewsModels.PrestamosModelsViews
+
+@{
+    ViewBag.Title = "NUEVO PRESTAMO";
+}
+
+    <h3>NUEVO PRESTAMO</h3>
+<br />
+
+@using (Html.BeginForm("Create", "Prestamoes", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+
+    <div class="col-md-9 p-0 m-0">
+        <div class="w-100 bg-white p-0 m-0 mb-1">
+            <span class="text-primary sizeSpace size-14 p-1">BUSCAR CLIENTES</span>
+        </div>
+        <div class="col-md-12 bg-white rounded-lg shadow-lg m-0 p-3">
+
+
+            <div class=" d-flex justify-content-start align-items-center">
+                <div class="col-md-4 p-0 m-0 mr-3">
+                    <span class="text-muted sizeSpace size-14 mb-2">TIPO DE DOCUMENTO</span>
+
+
+
+                    <select class="form-control mt-1">
+                        <option value="value">CÉDULA</option>
+                        <option value="value">PASAPORTE</option>
+                        <option value="value">PASAPORTE EXTRANJERO</option>
+                    </select>
+
+                </div>
+
+                <div class="col-md-4 p-0 m-0 mr-3">
+                    <span class="text-muted sizeSpace size-14 mb-2">NÚMERO DE DOCUMENTO</span>
+
+
+
+                    <input type="type" class="form-control mt-1" name="name" value="" />
+
+                </div>
+                <div class="col-md-3 p-0 m-0">
+                    <span class="text-white sizeSpace size-14 mb-2">.</span>
+
+
+
+                    <button class="bg-primary form-control text-white ">Buscar</button>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <br />
+    
+
+    <div class="col-md-11 bg-white p-0 m-0">
+        <div class="w-100 p-0 m-0 mb-1">
+            <span class="text-primary sizeSpace size-14 p-1">INFORMACIÓN DEL CLIENTE</span>
+        </div>
+        <div class="col-md-11 rounded-lg shadow-lg m-0 p-3">
+
+
+            <div class=" d-flex justify-content-start align-items-center mb-3">
+                <div class="col-md-4 p-0 m-0 ">
+                    <span class="text-muted sizeSpace size-14 mb-2">PRIMER NOMBRE</span>
+
+
+
+                    <input type="type" class="form-control mt-1" name="name" value="" />
+
+                </div>
+
+                <div class="col-md-4 p-0 m-0">
+                    <span class="text-muted sizeSpace size-14 mb-2">SEGUNDO NOMBRE</span>
+
+
+
+                    <input type="type" class="form-control mt-1" name="name" value="" />
+
+                </div>
+                <div class="col-md-4 p-0 m-0">
+                    <span class="text-muted sizeSpace size-14 mb-2">PRIMER APELLIDO</span>
+
+
+
+                    <input type="type" class="form-control mt-1" name="name" value="" />
+
+                </div>
+            </div>
+
+            <div class=" d-flex justify-content-start align-items-center mb-3">
+                <div class="col-md-4 p-0 m-0">
+                    <span class="text-muted sizeSpace size-14 mb-2">SEGUNDO APELLIDO</span>
+
+
+
+                    <input type="type" class="form-control mt-1" name="name" value="" />
+
+                </div>
+
+                <div class="col-md-4 p-0 m-0 ">
+                    <span class="text-muted sizeSpace size-14 mb-2">TÉLEFONO</span>
+
+
+
+                    <input type="type" class="form-control mt-1" name="name" value="" />
+
+                </div>
+                <div class="col-md-4 p-0 m-0">
+                    <span class="text-muted sizeSpace size-14 mb-2">CÉLULAR</span>
+
+
+
+                    <input type="type" class="form-control mt-1" name="name" value="" />
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="mini-card">
+        <div class="mini-card-header">
+            <label>Información del Vehiculo</label>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label>Marca</label>
+                @Html.DropDownList("IdMarca", null, "Seleccione", htmlAttributes: new { @class = "form-control", @id = "marcas" })
+            </div>
+            <div class="form-group col-md-3">
+                <label>Modelo</label>
+                <select name="IdModelo" class="form-control" id="IdModelo">
+                    <option>Seleccione</option>
+
+                </select>
+
+
+                @Html.ValidationMessageFor(model => model.IdModelo, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-md-3">
+                <label>No. Chasis</label>
+                @Html.EditorFor(model => model.NoChasis, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NoChasis, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-md-3">
+                <label>Placa</label>
+                @Html.EditorFor(model => model.NoPlaca, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NoPlaca, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label>Año</label>
+                @Html.EditorFor(model => model.año, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.año, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-md-3">
+                <label>Color</label>
+                @Html.EditorFor(model => model.color, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.color, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-md-3">
+                <label>fecha</label>
+                <input type="date" name="fecha" class="form-control" />
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="mini-card">
+        <div class="mini-card-header">
+            <label>Información del Prestamo</label>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label>Tipo de Prestamo</label>
+                @Html.DropDownList("IdTipoPrestamo", null, "Seleccione", htmlAttributes: new { @class = "form-control", @id = "TipoPrestamo" })
+            </div>
+
+            <div class="form-group col-md-3">
+                <label>% Tasa Interes</label>
+                @Html.EditorFor(model => model.TasaInteres, new { htmlAttributes = new { @class = "form-control", @id = "tasaInteres" } })
+                @Html.ValidationMessageFor(model => model.TasaInteres, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-md-3">
+                <label>Tasa Mora</label>
+                @Html.EditorFor(model => model.TasaMora, new { htmlAttributes = new { @class = "form-control", @id = "TasaMora" } })
+                @Html.ValidationMessageFor(model => model.TasaMora, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-md-3">
+                <label>Dias de Gracia Para Pago</label>
+                @Html.EditorFor(model => model.TiempoParaMora, new { htmlAttributes = new { @class = "form-control", @id = "TiempoParaMora" } })
+                @Html.ValidationMessageFor(model => model.TiempoParaMora, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label>Monto Solicitado</label>
+                @Html.EditorFor(model => model.MontoPrestamo, new { htmlAttributes = new { @class = "form-control", @id = "monto" } })
+                @Html.ValidationMessageFor(model => model.MontoPrestamo, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-md-3">
+                <label>Tiempo (Cantidad Meses)</label>
+                @Html.EditorFor(model => model.Tiempo, new { htmlAttributes = new { @class = "form-control", @id = "tiempoPrestamo" } })
+                @Html.ValidationMessageFor(model => model.Tiempo, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group col-md-3">
+                <label>% Interes Para Abonos</label>
+                @Html.EditorFor(model => model.PorcentajeInteresAbono, new { htmlAttributes = new { @class = "form-control", @id = "PorcentajeInteresAbono" } })
+                @Html.ValidationMessageFor(model => model.PorcentajeInteresAbono, "", new { @class = "text-danger" })
+
+                <input id="capital"
+                       name="capital"
+                       type="hidden"
+                       value="1" />
+
+                <input id="interes"
+                       name="interes"
+                       type="hidden"
+                       value="1" />
+            </div>
+
+            <div class="form-group col-md-3">
+                <label for="inputPassword4">Valor Cuota</label>
+                <input type="text" class="form-control" name="Cuota" id="Cuota">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            <input type="submit" value="Guardar" class="btn btn-default" />
+        </div>
+    </div>
+
+}
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog-custom">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Nuevo Cliente</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+
+                <div class="mini-card">
+                    <div class="mini-card-header">
+                        <label>Información de Cliente</label>
+                    </div>
+
+                    <div>
+                        <div>
+                            <div class="form-group col-md-3">
+                                <label for="inputEmail4">Foto</label>
+                                <p><img id="output" width="200" /></p>
+                                <input type="file" name="Foto" accept="image/*" id="file" onchange="loadFile(event)" class="form-control" />
+
+
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-3">
+                                    <label for="inputEmail4">Tipo Documento</label>
+                                    <select name="idTipoIdentificacionNuevoCliente" class="form-control" id="idTipoIdentificacionNuevoCliente">
+                                        <option>Seleccione</option>
+
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>Numero Documento</label>
+                                    <input type="text" class="form-control" maxlength="11" id="noidentificacionNuevoCliente" />
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>Nombres</label>
+                                    <input type="text" class="form-control" id="nombreNuevoCliente" />
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>Apellidos</label>
+                                    <input type="text" class="form-control" id="apellidoNuevoCliente" />
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="mini-card">
+                    <div class="mini-card-header">
+                        <label>Información de Contacto</label>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label for="inputEmail4">Telefono </label>
+                            <input type="text" class="form-control" id="telefonoNuevoCliente" />
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Numero Movil</label>
+                            <input type="text" class="form-control" id="telefonoMovilNuevoCliente" />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Dreccion</label>
+                            <input type="text" class="form-control" id="direccionNuevoCliente" />
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="mini-card">
+                    <div class="mini-card-header">
+                        <label>Referencias Personales</label>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label for="inputEmail4">Referencia  </label>
+                            <input type="text" class="form-control text-reference" , placeholder="Nombre" id="nombreReferencia1NuevoCliente" />
+                            <input type="text" class="form-control text-reference" , placeholder="Telefono" id="telefonoReferencia1NuevoCliente" />
+
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Referencia 2</label>
+                            <input type="text" class="form-control text-reference" , placeholder="Nombre" id="nombreReferencia2NuevoCliente" />
+                            <input type="text" class="form-control text-reference" , placeholder="Telefono" id="telefonoReferencia2NuevoCliente" />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Referencia 3</label>
+                            <input type="text" class="form-control text-reference" , placeholder="Nombre" id="nombreReferencia3NuevoCliente" />
+                            <input type="text" class="form-control text-reference" , placeholder="Telefono" id="telefonoReferencia3NuevoCliente" />
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <input type="button" id="CrearNuevoCliente" value="Guardar" class="btn btn-success" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+
+
+
+        $("#tiempoPrestamo").keyup(function () {
+
+            var Monto = 0;
+            var tasa = 0;
+            var tiempo = 0;
+
+            Monto = $("#monto").val();
+            tasa = $("#tasaInteres").val();
+            tiempo = $("#tiempoPrestamo").val();
+            var cuota = $("#Cuota").val();
+
+
+            var interesCompleto = (parseFloat(tasa) / 100) * Monto;
+
+            console.log(interesCompleto);
+
+            var prestamoConIntereses = (parseFloat(Monto) / parseFloat(tiempo)) + parseFloat(interesCompleto);
+
+
+
+            var capital = parseFloat(Monto) / parseFloat(tiempo);
+
+            console.log(capital);
+            $("#Cuota").val(prestamoConIntereses);
+            $("#interes").val(interesCompleto);
+            $("#capital").val(capital);
+
+        });
+
+        $("#marcas").on("change", function () {
+
+            var Posicion = $("#marcas").val();
+
+            $.post("getModelos", { marcasId: Posicion }, function (data) {
+
+
+
+                $("#IdModelo").text("");
+                $("#IdModelo").append("<option >Seleccione</option>");
+                $.each(data, function (index, value) {
+
+                    $("#IdModelo").append("<option value=" + value.Id + ">" + value.Descripcion + "</option>");
+
+                    console.log(value);
+
+                });
+            });
+
+        });
+
+        $("#IdModelo").on("change", function () {
+
+            var Posicion = $("#IdModelo").val();
+
+            $("#modeloId").text("");
+            $("#modeloId").val(Posicion);
+
+
+        });
+
+        $("#buscarButton").click(function () {
+            var documento = $("#noDocumento").val();
+
+
+
+            $.post("getClientes", { cedula: documento }, function (data) {
+
+                if (data.succes == true) {
+                    $("#nombreCliente").text("");
+                    $("#nombreCliente").val(data.Nombres);
+
+                    $("#IdCliente").text("");
+                    $("#IdCliente").val(data.Id);
+                } else {
+                    AgregarNuevoCliente();
+                }
+
+            });
+        });
+
+        $("#TipoPrestamo").on("change", function () {
+
+            var prestamoId = $("#TipoPrestamo").val();
+
+            $.post("getTipoPrestamo", { prestamoId: prestamoId }, function (data) {
+
+
+                console.log(data);
+                $("#tasaInteres").val(data.InteresPrestamo);
+                $("#TasaMora").val(data.InteresMora);
+                $("#TiempoParaMora").val(data.DiasGraciaMora);
+                $("#PorcentajeInteresAbono").val(data.InteresSaldo);
+
+
+            });
+
+        });
+
+
+        function AgregarNuevoCliente() {
+
+            $("#idTipoIdentificacionNuevoCliente").text("");
+
+            $.post("getTipoIdentificacion", function (data) {
+
+
+
+
+                $("#idTipoIdentificacionNuevoCliente").append("<option >Seleccione</option>");
+                $.each(data, function (index, value) {
+
+                    $("#idTipoIdentificacionNuevoCliente").append("<option value=" + value.Id + ">" + value.Descripcion + "</option>");
+
+
+
+                });
+            });
+
+            $("#myModal").modal('show');
+        }
+
+        $("#CrearNuevoCliente").click(function () {
+
+
+
+            var send = {
+                idTipoIdentificacionNuevoCliente: $("#idTipoIdentificacionNuevoCliente").val(),
+                noidentificacionNuevoCliente: $("#noidentificacionNuevoCliente").val(),
+                nombreNuevoCliente: $("#nombreNuevoCliente").val(),
+                apellidoNuevoCliente: $("#apellidoNuevoCliente").val(),
+                telefonoNuevoCliente: $("#telefonoNuevoCliente").val(),
+                telefonoMovilNuevoCliente: $("#telefonoMovilNuevoCliente").val(),
+                direccionNuevoCliente: $("#direccionNuevoCliente").val(),
+                nombreReferencia1NuevoCliente: $("#nombreReferencia1NuevoCliente").val(),
+                telefonoReferencia1NuevoCliente: $("#telefonoReferencia1NuevoCliente").val(),
+                nombreReferencia2NuevoCliente: $("#nombreReferencia2NuevoCliente").val(),
+                telefonoReferencia2NuevoCliente: $("#telefonoReferencia2NuevoCliente").val(),
+                nombreReferencia3NuevoCliente: $("#nombreReferencia3NuevoCliente").val(),
+                telefonoReferencia3NuevoCliente: $("#telefonoReferencia3NuevoCliente").val()
+
+            }
+
+            $.post("addNuevoCliente", send, function (data) {
+
+                $("#nombreCliente").text("");
+                $("#nombreCliente").val(data.nombreCliente);
+
+                $("#IdCliente").text("");
+                $("#IdCliente").val(data.Id);
+
+                $("#noDocumento").text("");
+                $("#noDocumento").val($("#noidentificacionNuevoCliente").val());
+
+                $('#myModal').modal('toggle');
+
+            });
+        });
+
+        var loadFile = function (event) {
+            var image = document.getElementById('output');
+            image.src = URL.createObjectURL(event.target.files[0]);
+        };
+
+
+
+
+                                                                    //$("#noDocumento").on('keypress', function (e) {
+                                                                    //    if (e.which == 13) {
+                                                                    //        var documento = $("#noDocumento").val();
+
+                                                                    //        $.post("getClientes", { cedula: documento }, function (data) {
+
+
+                                                                    //            $("#nombreCliente").text("");
+                                                                    //            $("#nombreCliente").val(data.Nombres);
+
+                                                                    //            $("#clienteId").text("");
+                                                                    //            $("#clienteId").val(data.Nombres);
+
+                                                                    //        });
+                                                                    //    }
+                                                                    //});
+    </script>
+}

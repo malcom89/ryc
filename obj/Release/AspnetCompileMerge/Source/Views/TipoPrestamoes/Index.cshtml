@@ -1,0 +1,57 @@
+﻿@model IEnumerable<MotoCredito.Entity.TipoPrestamo>
+
+@{
+    ViewBag.Title = "Tipos de Prestamos";
+}
+
+<h2>Tipos de Prestamos</h2>
+
+<p>
+    @Html.ActionLink("Agregar Nuevo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <label>Descipcion</label>
+        </th>
+        <th>
+            <label>% Tasa de Interes</label>
+        </th>
+        <th>
+            <label>% Tasa de Interes Mora</label>
+        </th>
+        <th>
+            <label>% Tasa de Interes Saldo</label>
+        </th>
+        <th>
+            <label>Dias de Gracias</label>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Descripcion)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.InteresPrestamo)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.InteresMora)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.InteresSaldo)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DiasGraciaMora)
+    </td>
+    <td>
+        @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+
+        @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
+    </td>
+</tr>
+}
+
+</table>

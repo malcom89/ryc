@@ -1,0 +1,55 @@
+﻿@model IEnumerable<MotoCredito.Entity.Clientes>
+
+@{
+    ViewBag.Title = "Clientes";
+}
+
+<h2>Clientes</h2>
+
+<p>
+    @Html.ActionLink("Agregar", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <label>Tipo Identificacion</label>
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoIdentificacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Apellidos)
+        </th>
+
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.Tipoidentificacion1.Descripcion)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NoIdentificacion)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nombres)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Apellidos)
+    </td>
+
+  
+    <td>
+        @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+        @Html.ActionLink("Detalles", "Details", new { id = item.Id })
+    </td>
+</tr>
+}
+
+</table>

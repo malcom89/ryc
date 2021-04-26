@@ -1,0 +1,65 @@
+﻿@model MotoCredito.Entity.Clientes
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Clientes</h4>
+    <hr />
+    <img id="output" src="@Model.fotoUrl" width="200" />
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            <label>Tipo Documento</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipoidentificacion1.Descripcion)
+        </dd>
+
+        <dt>
+            <label>No. Identificacion</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoIdentificacion)
+        </dd>
+
+        <dt>
+            <label>Nombre</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Apellidos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Apellidos)
+        </dd>
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaCreacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaCreacion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Atras", "Index")
+</p>
+
+

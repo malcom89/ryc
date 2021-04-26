@@ -1,0 +1,120 @@
+﻿@model MotoCredito.Entity.Prestamo
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Prestamo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Clientes.Nombres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Clientes.Nombres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Modelo.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modelo.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NoChasis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoChasis)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NoPlaca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoPlaca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaApertura)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaApertura)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TasaInteres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TasaInteres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TasaMora)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TasaMora)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TiempoParaMora)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TiempoParaMora)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MontoPrestamo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MontoPrestamo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tiempo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tiempo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PorcentajeInteresAbono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PorcentajeInteresAbono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BalanceRestante)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BalanceRestante)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

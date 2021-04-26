@@ -1,0 +1,71 @@
+﻿@model IEnumerable<MotoCredito.Entity.Pagos>
+
+
+    <table class="table">
+        <tr>
+            <th>
+                <label>No. Pago</label>
+            </th>
+            <th>
+                <label>Monto a Pagar</label>
+            </th>
+            <th>
+               <label>Fecha de Pago</label>
+            </th>
+            <th>
+                <label>Abono</label>
+            </th>
+
+            <th>
+               <label>Mora</label>
+            </th>
+            <th>
+               <label>Interes</label>
+            </th>
+            <th>
+              <label>Capital</label>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cubierto)
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    
+    @foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoPago)
+        </td>
+        <td>
+            <input type="text" class="form-control" id="montoPagadoNo_@item.NoPago" />
+        </td>
+
+        <td>
+            <input type="date" class="form-control" id="fechaPagoNo_@item.NoPago"/>
+        </td>
+        <td>
+            <input type="text" class="form-control" id="abonoNo_@item.NoPago"/>
+        </td>
+
+        <td>
+            <input type="text" class="form-control" id="moraNo_@item.NoPago" />
+        </td>
+        <td>
+            <input type="text" class="form-control"  id="interesNo_@item.NoPago"/>
+        </td>
+        <td>
+            <input type="text" class="form-control" id="capitalNo_@item.NoPago"/>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cubierto)
+        </td>
+       <td>
+           <button>Guardar</button>
+       </td>
+    </tr>
+    }
+    
+    </table>
+

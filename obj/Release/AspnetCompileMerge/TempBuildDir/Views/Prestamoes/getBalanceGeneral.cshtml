@@ -1,0 +1,48 @@
+﻿@model MotoCredito.ViewsModels.balanceGeneralModelView
+
+@{
+    ViewBag.Title = "Balance General";
+}
+
+
+    <div>
+        <h3>Balance General</h3>
+        @Html.DisplayNameFor(model => model.cantidadPrestamosActivos)
+    </div>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Cantidad Prestamos Activos
+                </th>
+                <th>
+                    Capital Prestado
+                </th>
+                <th>
+                    Intereses Generados
+                </th>
+                <th>
+                    Mora Acumulada
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.cantidadPrestamosActivos)
+                </td>
+                <td>
+                    @Html.DisplayNameFor(model => model.cantidadPrestamosActivos)
+                </td>
+                <td>
+                    @Html.DisplayNameFor(model => model.interesesGenerados)
+                </td>
+                <td>
+                    @Html.DisplayNameFor(model => model.moraAcumulada)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,151 @@
+﻿
+@model MotoCredito.Entity.Clientes
+
+@{
+    ViewBag.Title = "Nuevo Cliente";
+}
+
+<h2>Nuevo Cliente</h2>
+
+
+@using (Html.BeginForm("Create",
+                        "Clientes",
+                        FormMethod.Post,
+                        new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+
+    <h4>Clientes</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+    <div class="mini-card">
+        <div class="mini-card-header">
+            <label>Información de Cliente</label>
+        </div>
+        <div>
+            <div>
+                <div class="form-group col-md-3">
+                    <label for="inputEmail4">Foto</label>
+                    <p><img id="output" width="200" /></p>
+                    <input type="file" name="Foto" accept="image/*" id="file" onchange="loadFile(event)" class="form-control" />
+
+
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="inputEmail4">Tipo Documento</label>
+                        @Html.DropDownList("TipoIdentificacion", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.TipoIdentificacion, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Numero Documento</label>
+                        @Html.EditorFor(model => model.NoIdentificacion, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NoIdentificacion, "", new { @class = "text-danger" })
+                    </div>
+
+
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label>Nombres</label>
+                        @Html.EditorFor(model => model.Nombres, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Nombres, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Apellidos</label>
+                        @Html.EditorFor(model => model.Apellidos, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Apellidos, "", new { @class = "text-danger" })
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mini-card">
+        <div class="mini-card-header">
+            <label>Información de Contacto</label>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="inputEmail4">Telefono </label>
+                @Html.EditorFor(model => model.numeroTelefonico1, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.numeroTelefonico1, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-md-3">
+                <label>Numero Movil</label>
+                @Html.EditorFor(model => model.numeroTelefonico2, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.numeroTelefonico2, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-md-6">
+                <label>Dreccion</label>
+                @Html.EditorFor(model => model.direccion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.direccion, "", new { @class = "text-danger" })
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="mini-card">
+        <div class="mini-card-header">
+            <label>Referencias Personales</label>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="inputEmail4">Referencia  </label>
+                @Html.EditorFor(model => model.nombreReferencia1, new { htmlAttributes = new { @class = "form-control text-reference", placeholder = "Nombre" } })
+                @Html.ValidationMessageFor(model => model.nombreReferencia1, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.numeroTelefonicoReferencia1, new { htmlAttributes = new { @class = "form-control text-reference", placeholder = "Telefono" } })
+                @Html.ValidationMessageFor(model => model.numeroTelefonicoReferencia1, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-md-3">
+                <label>Referencia 2</label>
+                @Html.EditorFor(model => model.nombreReferencia2, new { htmlAttributes = new { @class = "form-control text-reference", placeholder = "Nombre" } })
+                @Html.ValidationMessageFor(model => model.nombreReferencia2, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.numeroTelefonicoReferencia2, new { htmlAttributes = new { @class = "form-control text-reference", placeholder = "Telefono" } })
+                @Html.ValidationMessageFor(model => model.numeroTelefonicoReferencia2, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-md-6">
+                <label>Referencia 3</label>
+                @Html.EditorFor(model => model.nombreReferencia3, new { htmlAttributes = new { @class = "form-control text-reference", placeholder = "Nombre" } })
+                @Html.ValidationMessageFor(model => model.nombreReferencia3, "", new { @class = "text-danger" })
+
+                @Html.EditorFor(model => model.numeroTelefonicoReferencia3, new { htmlAttributes = new { @class = "form-control text-reference", placeholder = "Telefono" } })
+                @Html.ValidationMessageFor(model => model.numeroTelefonicoReferencia3, "", new { @class = "text-danger" })
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class="form-group">
+        <div class="col-md-10">
+            <input type="submit" value="Guardar" class="btn btn-default" />
+        </div>
+    </div>
+
+}
+
+<div>
+    @Html.ActionLink("Atras", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        var loadFile = function (event) {
+            var image = document.getElementById('output');
+            image.src = URL.createObjectURL(event.target.files[0]);
+        };
+    </script>
+}

@@ -1,0 +1,62 @@
+﻿@model MotoCredito.ViewsModels.PagosModelsViews
+@{
+    ViewBag.Title = "aplicarPago";
+}
+
+<h2>Aplicar Pago</h2>
+
+@using (Html.BeginForm("aplicarPago", "Prestamoes", FormMethod.Post, new { target= "_blank"}))
+{
+
+
+    <div class="mini-card">
+        <div class="mini-card-header">
+            <label>Información del Prestamo</label>
+            <br/>
+            <label>Prestamo No. @Model.prestamoNumero</label>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label>Capital</label>
+              
+                @Html.EditorFor(model => model.capital, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.HiddenFor(model => model.prestamoNumero)
+            </div>
+            <div class="form-group col-md-3">
+                <label>Interes</label>
+                @Html.EditorFor(model => model.interes, new { htmlAttributes = new { @class = "form-control" , @readonly = "readonly"} })
+            </div>
+            <div class="form-group col-md-3">
+                <label>Cuota</label>
+                @Html.EditorFor(model => model.cuota, new { htmlAttributes = new { @class = "form-control" , @readonly = "readonly"} })
+            </div>
+            <div class="form-group col-md-3">
+                <label>Mora</label>
+                @Html.EditorFor(model => model.mora, new { htmlAttributes = new { @class = "form-control" , @readonly = "readonly"} })
+            </div>
+            <div class="form-group col-md-3">
+                <label>Abono Anterior</label>
+                @Html.EditorFor(model => model.abono, new { htmlAttributes = new { @class = "form-control" , @readonly = "readonly"} })
+            </div>
+            <div class="form-group col-md-3">
+                <label>Numero Cuota</label>
+                @Html.EditorFor(model => model.numeroCuota, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            </div>
+            <div class="form-group col-md-3">
+                <label>Total a Pagar</label>
+                @Html.EditorFor(model => model.totalPagado, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            <div class="form-group col-md-3">
+                <label>Comentario</label>
+                @Html.TextAreaFor(model => model.comentario, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-10">
+            <input type="submit" value="Aplicar Pago" target="_blank" class="btn btn-default" />
+        </div>
+    </div>
+}
+

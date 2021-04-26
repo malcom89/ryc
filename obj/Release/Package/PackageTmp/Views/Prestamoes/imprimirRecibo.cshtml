@@ -1,0 +1,68 @@
+﻿@model MotoCredito.ViewsModels.reciboPago
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>recibo</title>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div style="width:100%">
+        <div class="reciboHead" style="align-items:center">
+            <h3>R & C SOLUCIONES FINANCIERAS</h3>
+            <h5>Respaldo camaño #3 los 3 brazos santo domingo Este RD</h5>
+            <h5>RNC:131-38185-5</h5>
+            <h5>809-234-0855</h5>
+            <p>**Compra, venta y financiamiento de vehiculos nuevos y usados**</p>
+        </div>
+
+        <div class="reciboBody">
+            <h3>PAGO DE PRESTAMO</h3>
+            <br />
+            -------------------------------------------------------------
+            <br />
+            <div class="informacionRecibo">
+                <label>no. Recibo:</label>@Html.DisplayFor(model => model.id)
+                <br />
+                <label>Fecha: </label>@Html.DisplayFor(model => model.fechaRecibo)
+                <br />
+                <label>Cte: </label>@Html.DisplayFor(model => model.nombreCliente)
+                <br />
+                <label>Cajero: </label>@Html.DisplayFor(model => model.usuarioNombre)
+                <br />
+            </div>
+            <br />
+            -------------------------------------------------------------
+            <br />
+            <h3>DETALLES</h3>
+            <div class="informacionRecibo">
+                <label>Capital:@Html.DisplayFor(model => model.capitalPagado)</label>
+                <br />
+                <label>Interes:@Html.DisplayFor(model => model.interesPagado)</label>
+                <br />
+                <label>Mora:@Html.DisplayFor(model => model.moraPagada)</label>
+                <br />
+                <label>Abono:@Html.DisplayFor(model => model.abono)</label>
+                <br />
+                <label>Total:@Html.DisplayFor(model => model.montoRecibido)</label>
+                <br />
+                <label>Comentario: </label>@Html.DisplayFor(model => model.comentario)
+                <br />
+            </div>
+        </div>
+        <div>
+            <h3>Recibido:_________________________</h3>
+        </div>
+    </div>
+</body>
+</html>
