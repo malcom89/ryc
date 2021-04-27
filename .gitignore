@@ -6,3 +6,23 @@
 .vs/MotoCredito/v16/Server/sqlite3/storage.ide-shm
 
 .vs/MotoCredito/v16/Server/sqlite3/storage.ide-wal
+
+.vs/MotoCredito/config/applicationhost.config
+
+.vs/MotoCredito/v16/.suo
+
+bin/MotoCredito.dll
+
+bin/MotoCredito.pdb
+
+obj/Debug/MotoCredito.csproj.FileListAbsolute.txt
+
+obj/Debug/MotoCredito.csprojAssemblyReference.cache
+
+obj/Debug/MotoCredito.dll
+
+obj/Debug/MotoCredito.pdb
+
+*.pdb
+
+.vs/MotoCredito/config/
