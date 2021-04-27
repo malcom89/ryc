@@ -1,0 +1,41 @@
+﻿* {
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.bg-muted {
+    background: #e3e3e3 !important;
+}
+
+.input {
+    width: 100% !important;
+    height: 50px !important;
+    border-radius: 0px !important;
+    border: 0.1px solid #e3e3e3 !important;
+}
+
+.text-muted {
+    color: #e3e3e3;
+}
+
+
+
+.sizeSpace {
+    font-weight: 600 !important;
+}
+
+.size-14 {
+    font-size: 14px !important
+}
+
+.size-20 {
+    font-size: 20px !important
+}
+
+.bg-success, btn-success {
+    background-color: #06c6ec !important;
+}
+
