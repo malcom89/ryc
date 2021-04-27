@@ -88,4 +88,12 @@ table tbody tr td {
 }
 
 
+.dt-button {
+    border: none !important;
+    background: #f9f8f8 !important;
+    color: #6c7989 !important;
+    font-weight: 600;
+}
+
+
 
