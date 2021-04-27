@@ -17,8 +17,8 @@ body {
     border: 0.1px solid #e3e3e3 !important;
 }
 
-text-muted {
-    color: #e3e3e3 !important;
+.text-muted {
+    color: #e3e3e3;
 }
 
 
