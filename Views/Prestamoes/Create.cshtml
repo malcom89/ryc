@@ -4,17 +4,15 @@
     ViewBag.Title = "NUEVO PRESTAMO";
 }
 
-    <h3>NUEVO PRESTAMO</h3>
-<br />
+    <h5 class="text-primary sizeSpace">NUEVO PRESTAMO</h5>
+
 
 @using (Html.BeginForm("Create", "Prestamoes", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
 
 
-    <div class="col-md-9 p-0 m-0">
-        <div class="w-100 bg-white p-0 m-0 mb-1">
-            <span class="text-primary sizeSpace size-14 p-1">BUSCAR CLIENTES</span>
-        </div>
+    <div class="col-md-10 p-0 m-0">
+        
         <div class="col-md-12 bg-white rounded-lg shadow-lg m-0 p-3">
 
 
@@ -24,7 +22,7 @@
 
 
 
-                    <select class="form-control mt-1">
+                    <select class="form-control mt-1 input">
                         <option value="value">CÉDULA</option>
                         <option value="value">PASAPORTE</option>
                         <option value="value">PASAPORTE EXTRANJERO</option>
@@ -37,7 +35,7 @@
 
 
 
-                    <input type="type" class="form-control mt-1" name="name" value="" />
+                    <input type="type" class="form-control mt-1 input" name="name" value="" />
 
                 </div>
                 <div class="col-md-3 p-0 m-0">
@@ -45,7 +43,8 @@
 
 
 
-                    <button class="bg-primary form-control text-white ">Buscar</button>
+                    <button type="submit" class="input bg-primary d-flex justify-content-center align-items-center">
+                    <i class="fas fa-search text-white mr-3"></i> <span class="text-white">Buscar</span></button>
 
                 </div>
             </div>
@@ -56,11 +55,11 @@
     <br />
     
 
-    <div class="col-md-11 bg-white p-0 m-0">
+    <div class="col-md-11  p-0 m-0" style="display:block;">
         <div class="w-100 p-0 m-0 mb-1">
             <span class="text-primary sizeSpace size-14 p-1">INFORMACIÓN DEL CLIENTE</span>
         </div>
-        <div class="col-md-11 rounded-lg shadow-lg m-0 p-3">
+        <div class="col-md-11 rounded-lg shadow-lg bg-white m-0 p-3">
 
 
             <div class=" d-flex justify-content-start align-items-center mb-3">
@@ -69,7 +68,7 @@
 
 
 
-                    <input type="type" class="form-control mt-1" name="name" value="" />
+                    <input type="type" class="form-control mt-1 input" name="name" value="" />
 
                 </div>
 
@@ -78,7 +77,7 @@
 
 
 
-                    <input type="type" class="form-control mt-1" name="name" value="" />
+                    <input type="type" class="form-control mt-1 input" name="name" value="" />
 
                 </div>
                 <div class="col-md-4 p-0 m-0">
@@ -86,7 +85,7 @@
 
 
 
-                    <input type="type" class="form-control mt-1" name="name" value="" />
+                    <input type="type" class="form-control mt-1 input" name="name" value="" />
 
                 </div>
             </div>
@@ -97,7 +96,7 @@
 
 
 
-                    <input type="type" class="form-control mt-1" name="name" value="" />
+                    <input type="type" class="form-control mt-1 input" name="name" value="" />
 
                 </div>
 
@@ -106,7 +105,7 @@
 
 
 
-                    <input type="type" class="form-control mt-1" name="name" value="" />
+                    <input type="type" class="form-control mt-1 input" name="name" value="" />
 
                 </div>
                 <div class="col-md-4 p-0 m-0">
@@ -114,131 +113,183 @@
 
 
 
-                    <input type="type" class="form-control mt-1" name="name" value="" />
+                    <input type="type" class="form-control mt-1 input" name="name" value="" />
 
                 </div>
             </div>
         </div>
 
     </div>
+    <br />
 
-
-    <div class="mini-card">
-        <div class="mini-card-header">
-            <label>Información del Vehiculo</label>
+    <div class="col-md-11 p-0 m-0" style="display:block;">
+        <div class="w-100 p-0 m-0 mb-1">
+            <span class="text-primary sizeSpace size-14 p-1">INFORMACIÓN DEL VEHICÚLO</span>
+            
         </div>
-        <div class="form-row">
-            <div class="form-group col-md-3">
-                <label>Marca</label>
-                @Html.DropDownList("IdMarca", null, "Seleccione", htmlAttributes: new { @class = "form-control", @id = "marcas" })
-            </div>
-            <div class="form-group col-md-3">
-                <label>Modelo</label>
-                <select name="IdModelo" class="form-control" id="IdModelo">
-                    <option>Seleccione</option>
+        <div class="col-md-11 rounded-lg shadow bg-white m-0 p-3">
 
-                </select>
+            <div class=" d-flex justify-content-start align-items-center mb-3">
+
+                <div class="col-md-4 p-0 m-0 ">
+                    <span class="text-muted sizeSpace size-14 mb-2">MARCA</span>
+                    @Html.DropDownList("IdMarca", null, "Seleccione", htmlAttributes: new { @class = "form-control mt-1 input", @id = "marcas" })
+                </div>
+
+                <div class="col-md-4 p-0 m-0 ">
+                    <span class="text-muted sizeSpace size-14 mb-2">MODELO</span>
+                    <select name="IdModelo" class="form-control mt-1 input" id="IdModelo">
+                        <option>Seleccione</option>
+
+                    </select>
 
 
-                @Html.ValidationMessageFor(model => model.IdModelo, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.IdModelo, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-4 p-0 m-0">
+                    <span class="text-muted sizeSpace size-14 mb-2">COLOR</span>
+                    @Html.EditorFor(model => model.color, new { htmlAttributes = new { @class = "form-control mt-1 input" } })
+                    @Html.ValidationMessageFor(model => model.color, "", new { @class = "text-danger" })
+                </div>
             </div>
-            <div class="form-group col-md-3">
-                <label>No. Chasis</label>
-                @Html.EditorFor(model => model.NoChasis, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NoChasis, "", new { @class = "text-danger" })
+
+            <div class=" d-flex justify-content-start align-items-center mb-3">
+
+                <div class="col-md-4 p-0 m-0">
+                    <span class="text-muted sizeSpace size-14 mb-2">PLACA</span>
+                    @Html.EditorFor(model => model.NoPlaca, new { htmlAttributes = new { @class = "form-control mt-1 input" } })
+                    @Html.ValidationMessageFor(model => model.NoPlaca, "", new { @class = "text-danger" })
+                </div>
+
+
+                <div class="col-md-4 p-0 m-0">
+                    <span class="text-muted sizeSpace size-14 mb-2">AÑO</span>
+                    @Html.EditorFor(model => model.año, new { htmlAttributes = new { @class = "form-control mt-1 input" } })
+                    @Html.ValidationMessageFor(model => model.año, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-4 p-0 m-0">
+                    <span class="text-muted sizeSpace size-14 mb-2">NO. CHASIS</span>
+                    @Html.EditorFor(model => model.NoChasis, new { htmlAttributes = new { @class = "form-control mt-1 input" } })
+                    @Html.ValidationMessageFor(model => model.NoChasis, "", new { @class = "text-danger" })
+                </div>
+
             </div>
-            <div class="form-group col-md-3">
-                <label>Placa</label>
-                @Html.EditorFor(model => model.NoPlaca, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NoPlaca, "", new { @class = "text-danger" })
+
+
+
+
+            <div class=" d-flex justify-content-start align-items-center mb-3">
+
+
+                <div class="col-md-4 p-0 m-0">
+                    <span class="text-muted sizeSpace size-14 mb-2">FECHA</span>
+                    <input type="date" name="fecha" class="form-control mt-1 input" />
+                </div>
             </div>
+
+
         </div>
-        <div class="form-row">
-            <div class="form-group col-md-3">
-                <label>Año</label>
-                @Html.EditorFor(model => model.año, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.año, "", new { @class = "text-danger" })
-            </div>
-            <div class="form-group col-md-3">
-                <label>Color</label>
-                @Html.EditorFor(model => model.color, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.color, "", new { @class = "text-danger" })
-            </div>
-            <div class="form-group col-md-3">
-                <label>fecha</label>
-                <input type="date" name="fecha" class="form-control" />
-            </div>
-        </div>
-    </div>
-
-
-
-
-
-    <div class="mini-card">
-        <div class="mini-card-header">
-            <label>Información del Prestamo</label>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-3">
-                <label>Tipo de Prestamo</label>
-                @Html.DropDownList("IdTipoPrestamo", null, "Seleccione", htmlAttributes: new { @class = "form-control", @id = "TipoPrestamo" })
-            </div>
-
-            <div class="form-group col-md-3">
-                <label>% Tasa Interes</label>
-                @Html.EditorFor(model => model.TasaInteres, new { htmlAttributes = new { @class = "form-control", @id = "tasaInteres" } })
-                @Html.ValidationMessageFor(model => model.TasaInteres, "", new { @class = "text-danger" })
-            </div>
-            <div class="form-group col-md-3">
-                <label>Tasa Mora</label>
-                @Html.EditorFor(model => model.TasaMora, new { htmlAttributes = new { @class = "form-control", @id = "TasaMora" } })
-                @Html.ValidationMessageFor(model => model.TasaMora, "", new { @class = "text-danger" })
-            </div>
-            <div class="form-group col-md-3">
-                <label>Dias de Gracia Para Pago</label>
-                @Html.EditorFor(model => model.TiempoParaMora, new { htmlAttributes = new { @class = "form-control", @id = "TiempoParaMora" } })
-                @Html.ValidationMessageFor(model => model.TiempoParaMora, "", new { @class = "text-danger" })
-            </div>
+          
         </div>
 
-        <div class="form-row">
-            <div class="form-group col-md-3">
-                <label>Monto Solicitado</label>
-                @Html.EditorFor(model => model.MontoPrestamo, new { htmlAttributes = new { @class = "form-control", @id = "monto" } })
-                @Html.ValidationMessageFor(model => model.MontoPrestamo, "", new { @class = "text-danger" })
-            </div>
-            <div class="form-group col-md-3">
-                <label>Tiempo (Cantidad Meses)</label>
-                @Html.EditorFor(model => model.Tiempo, new { htmlAttributes = new { @class = "form-control", @id = "tiempoPrestamo" } })
-                @Html.ValidationMessageFor(model => model.Tiempo, "", new { @class = "text-danger" })
-            </div>
 
-            <div class="form-group col-md-3">
-                <label>% Interes Para Abonos</label>
-                @Html.EditorFor(model => model.PorcentajeInteresAbono, new { htmlAttributes = new { @class = "form-control", @id = "PorcentajeInteresAbono" } })
-                @Html.ValidationMessageFor(model => model.PorcentajeInteresAbono, "", new { @class = "text-danger" })
 
-                <input id="capital"
-                       name="capital"
-                       type="hidden"
-                       value="1" />
+        <br />
 
-                <input id="interes"
-                       name="interes"
-                       type="hidden"
-                       value="1" />
-            </div>
-
-            <div class="form-group col-md-3">
-                <label for="inputPassword4">Valor Cuota</label>
-                <input type="text" class="form-control" name="Cuota" id="Cuota">
-            </div>
+    <div class="col-md-11  p-0 m-0" style="display:block;">
+        <div class="w-100 p-0 m-0 mb-1">
+            <span class="text-primary sizeSpace size-14 p-1">INFORMACIÓN DEL PRESTAMO</span>
         </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-10">
-            <input type="submit" value="Guardar" class="btn btn-default" />
+        <div class="col-md-11 rounded-lg shadow-lg bg-white m-0 p-3">
+
+            <div class="d-flex justify-content-start align-items-center mb-3">
+
+                <div class="col-md-4 p-0 m-0">
+                    <span class="text-muted sizeSpace size-14 mb-2">TIPO DE PRESTAMO</span>
+                    @Html.DropDownList("IdTipoPrestamo", null, "Seleccione", htmlAttributes: new { @class = "form-control mt-1 input", @id = "TipoPrestamo" })
+                </div>
+
+                <div class="col-md-4 p-0 m-0">
+                    <span class="text-muted sizeSpace size-14 mb-2">% TASA INTERES</span>
+
+                    @Html.EditorFor(model => model.TasaInteres, new { htmlAttributes = new { @class = "form-control mt-1 input", @id = "tasaInteres" } })
+                    @Html.ValidationMessageFor(model => model.TasaInteres, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-4 p-0 m-0">
+                    <span class="text-muted sizeSpace size-14 mb-2"> TASA MORA</span>
+                    @Html.EditorFor(model => model.TasaMora, new { htmlAttributes = new { @class = "form-control mt-1 input", @id = "TasaMora" } })
+                    @Html.ValidationMessageFor(model => model.TasaMora, "", new { @class = "text-danger" })
+                </div>
+
+
+
+            </div>
+
+            <div class="d-flex justify-content-start align-items-center mb-3">
+                <div class="col-md-4 p-0 m-0">
+                    <span class="text-muted sizeSpace size-14 mb-2"> DIA DE GRACIA PARA PAGO</span>
+                    @Html.EditorFor(model => model.TiempoParaMora, new { htmlAttributes = new { @class = "form-control mt-1 input", @id = "TiempoParaMora" } })
+                    @Html.ValidationMessageFor(model => model.TiempoParaMora, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-4 p-0 m-0">
+                    <span class="text-muted sizeSpace size-14 mb-2">MONTO SOLICITADO</span>
+                    @Html.EditorFor(model => model.MontoPrestamo, new { htmlAttributes = new { @class = "form-control mt-1 input", @id = "monto" } })
+                    @Html.ValidationMessageFor(model => model.MontoPrestamo, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-4 p-0 m-0">
+                    <span class="text-muted sizeSpace size-14 mb-2">TIEMPO (CANTIDAD MESES)</span>
+                    @Html.EditorFor(model => model.Tiempo, new { htmlAttributes = new { @class = "form-control mt-1 input", @id = "tiempoPrestamo" } })
+                    @Html.ValidationMessageFor(model => model.Tiempo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="d-flex justify-content-start align-items-center mb-3">
+
+                <div class="col-md-4 p-0 m-0">
+                    <span class="text-muted sizeSpace size-14 mb-2">% INTERES (PARA ABONOS)</span>
+                    @Html.EditorFor(model => model.PorcentajeInteresAbono, new { htmlAttributes = new { @class = "form-control mt-1 input", @id = "PorcentajeInteresAbono" } })
+                    @Html.ValidationMessageFor(model => model.PorcentajeInteresAbono, "", new { @class = "text-danger" })
+
+                    <input id="capital"
+                           name="capital"
+                           type="hidden"
+                           value="1" />
+
+                    <input id="interes"
+                           name="interes"
+                           type="hidden"
+                           value="1" />
+                </div>
+
+                <div class="col-md-4 p-0 m-0">
+                    <span class="text-muted sizeSpace size-14 mb-2">VALOR CUOTA</span>
+                    
+                    <input type="text" class="form-control mt-1 input" name="Cuota" id="Cuota">
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+            </div>
+
+         
+        </div>
+
+        <br />
+    <div class="col-md-6 p-0 m-0" style="display:block;">
+        <div class="col-md-6 m-0 p-0">
+            <button type="submit" class="bg-success d-flex justify-content-center align-items-center form-control input"><i class="fal fa-save text-white size-14 mr-2"></i> <span class="text-white size-14">Guardar</span></button>
         </div>
     </div>
 
