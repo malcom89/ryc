@@ -39,20 +39,3 @@ body {
     background-color: #06c6ec !important;
 }
 
-#sideba {
-
-    width:100%;
-    transition: 0.1s all ease-in-out;
-}
-
-#sideba.activ {
-    width:0px;
-}
-
-
-.pointer {
-    cursor:pointer !important;
-}
-
-
-
