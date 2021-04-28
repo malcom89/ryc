@@ -1,13 +1,15 @@
 ﻿* {
     font-family: 'Poppins', sans-serif;
+    text-transform:uppercase !important
 }
 
 body {
     font-family: 'Poppins', sans-serif;
+    text-transform: uppercase !important
 }
 
 .bg-muted {
-    background: #e3e3e3 !important;
+    background: #f9f8f8 !important;
 }
 
 .input {
@@ -52,6 +54,45 @@ body {
 
 .pointer {
     cursor:pointer !important;
+}
+
+table thead tr {
+    background: #f9f8f8;
+}
+
+
+
+
+    table thead tr th label {
+        display: inline-block;
+        color: #6c7592;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform:uppercase;
+    }
+
+
+    table thead tr th {
+        border-bottom:0px !important;
+    }
+
+
+table tbody tr td {
+    padding: 8px 10px;
+    border-top: 0.1px solid #e3e3e3;
+    border-bottom: 0px;
+    font-size: 13px;
+    /* font-weight: 600; */
+    color: #6c7589;
+    text-transform: uppercase;
+}
+
+
+.dt-button {
+    border: none !important;
+    background: #f9f8f8 !important;
+    color: #6c7989 !important;
+    font-weight: 600;
 }
 
 
