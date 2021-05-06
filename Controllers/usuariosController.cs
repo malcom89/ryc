@@ -4,9 +4,11 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using MotoCredito.Entity;
+using MotoCredito.Helpers;
 using MotoCredito.ViewsModels;
 
 namespace MotoCredito.Controllers
@@ -134,20 +136,41 @@ namespace MotoCredito.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult login(loginViewModels login)
+        public async Task<JsonResult> login(loginViewModels login)
         {
-            if (login.clave == null || login.userLogin == null)
+
+            var res = new Res<Task>();
+            try
             {
-                return View();
+                var user = await db.usuarios.FirstOrDefaultAsync(x => x.UserLogin.Equals(login.userLogin));
+                var claveEncri = encriptar(login.clave);
+                if (user.clave.Equals(claveEncri))
+                {
+                    System.Web.HttpContext.Current.Session.Add("user", user);
+                    res.ok = 200;
+
+                } else
+                {
+                    res.ok = 300;
+                    res.err = "USUARIO O CONTRASEÑA SON INCORRECTO INTENTE NUEVAMENTE";
+                }
+
+                return Json(res, JsonRequestBehavior.AllowGet);
             }
-            var user = db.usuarios.FirstOrDefault(x => x.UserLogin.Equals(login.userLogin));
-            var claveEncri = encriptar(login.clave);
-            if (user.clave.Equals(claveEncri))
+            catch (Exception err)
             {
-                System.Web.HttpContext.Current.Session.Add("user", user);
-                return RedirectToAction("Index", "Prestamoes", null);
+
+                var serror = err.Message;
+                if (err.InnerException != null)
+                    serror = serror + " " + err.InnerException.Message;
+
+                res.ok = 404;
+                res.err = serror;
+                return Json(res, JsonRequestBehavior.AllowGet);
             }
-            else return View();
+           
+           
+            
         }
 
         public static string encriptar(string word)
