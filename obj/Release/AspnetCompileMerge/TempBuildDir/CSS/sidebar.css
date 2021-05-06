@@ -1,0 +1,99 @@
+﻿* {
+    font-family: 'Poppins', sans-serif;
+    text-transform:uppercase !important
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase !important
+}
+
+.bg-muted {
+    background: #f9f8f8 !important;
+}
+
+.input {
+    width: 100% !important;
+    height: 50px !important;
+    border-radius: 0px !important;
+    border: 0.1px solid #e3e3e3 !important;
+}
+
+.text-muted {
+    color: #e3e3e3;
+}
+
+
+
+.sizeSpace {
+    font-weight: 600 !important;
+}
+
+.size-14 {
+    font-size: 14px !important
+}
+
+.size-20 {
+    font-size: 20px !important
+}
+
+.bg-success, btn-success {
+    background-color: #06c6ec !important;
+}
+
+#sideba {
+
+    width:100%;
+    transition: 0.1s all ease-in-out;
+}
+
+#sideba.activ {
+    width:0px;
+}
+
+
+.pointer {
+    cursor:pointer !important;
+}
+
+table thead tr {
+    background: #f9f8f8;
+}
+
+
+
+
+    table thead tr th label {
+        display: inline-block;
+        color: #6c7592;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform:uppercase;
+    }
+
+
+    table thead tr th {
+        border-bottom:0px !important;
+    }
+
+
+table tbody tr td {
+    padding: 8px 10px;
+    border-top: 0.1px solid #e3e3e3;
+    border-bottom: 0px;
+    font-size: 13px;
+    /* font-weight: 600; */
+    color: #6c7589;
+    text-transform: uppercase;
+}
+
+
+.dt-button {
+    border: none !important;
+    background: #f9f8f8 !important;
+    color: #6c7989 !important;
+    font-weight: 600;
+}
+
+
+

@@ -5,19 +5,19 @@
 }
 
 
-    <div class=" col-md-10 w-100 p-0 m-0 d-flex justify-content-start align-items-center">
-        <div class="col-md-10 p-0 m-0 mr-4">
-            
-    <h3 class="text-primary sizeSpace size-20">NUEVO PRESTAMO</h3>
+<div class=" col-md-10 w-100 p-0 m-0 d-flex justify-content-start align-items-center">
+    <div class="col-md-10 p-0 m-0 mr-4">
+
+        <h3 class="text-primary sizeSpace size-20">NUEVO PRESTAMO</h3>
 
 
-        </div>
-        <div class="col-md-2 p-0 m-0">
-            <p>
-                @Html.ActionLink("REGRESAR", "index", null, new { @class = "form-control mt-1 input bg-warning text-white text-decoration-none pointer d-flex justify-content-center align-items-center" })
-            </p>
-        </div>
     </div>
+    <div class="col-md-2 p-0 m-0">
+        <p>
+            @Html.ActionLink("REGRESAR", "index", null, new { @class = "form-control mt-1 input bg-warning text-white text-decoration-none pointer d-flex justify-content-center align-items-center" })
+        </p>
+    </div>
+</div>
 
 
 @using (Html.BeginForm("Create", "Prestamoes", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -25,7 +25,7 @@
 
 
     <div class="col-md-10 p-0 m-0">
-        
+
         <div class="col-md-12 bg-white rounded-lg shadow-lg m-0 p-3">
 
 
@@ -38,7 +38,6 @@
                     <select class="form-control mt-1 input">
                         <option value="value">CÉDULA</option>
                         <option value="value">PASAPORTE</option>
-                        <option value="value">PASAPORTE EXTRANJERO</option>
                     </select>
 
                 </div>
@@ -48,7 +47,7 @@
 
 
 
-                    <input type="type" class="form-control mt-1 input" name="name" value="" />
+                    <input type="text" id="noDocumento" class="form-control mt-1 input" name="name" value="" />
 
                 </div>
                 <div class="col-md-3 p-0 m-0">
@@ -56,8 +55,9 @@
 
 
 
-                    <button type="submit" class="input bg-primary d-flex justify-content-center align-items-center">
-                    <i class="fas fa-search text-white mr-3"></i> <span class="text-white">Buscar</span></button>
+                    <button type="button" class="input bg-primary d-flex justify-content-center align-items-center" id="buscarButton">
+                        <i class="fas fa-search text-white mr-3"></i> <span class="text-white">Buscar</span>
+                    </button>
 
                 </div>
             </div>
@@ -66,7 +66,7 @@
     </div>
 
     <br />
-    
+
 
     <div class="col-md-11  p-0 m-0" style="display:block;">
         <div class="w-100 p-0 m-0 mb-1">
@@ -77,56 +77,53 @@
 
             <div class=" d-flex justify-content-start align-items-center mb-3">
                 <div class="col-md-4 p-0 m-0 ">
-                    <span class="text-muted sizeSpace size-14 mb-2">PRIMER NOMBRE</span>
+                    <span class="text-muted sizeSpace size-14 mb-2">NOMBRES</span>
 
 
 
-                    <input type="type" class="form-control mt-1 input" name="name" value="" />
-
-                </div>
-
-                <div class="col-md-4 p-0 m-0">
-                    <span class="text-muted sizeSpace size-14 mb-2">SEGUNDO NOMBRE</span>
-
-
-
-                    <input type="type" class="form-control mt-1 input" name="name" value="" />
+                    <input type="text" id="nombreCliente" class="form-control mt-1 input" name="name" value="" readonly />
 
                 </div>
+
+
                 <div class="col-md-4 p-0 m-0">
-                    <span class="text-muted sizeSpace size-14 mb-2">PRIMER APELLIDO</span>
+                    <span class="text-muted sizeSpace size-14 mb-2">APELLIDO</span>
 
 
 
-                    <input type="type" class="form-control mt-1 input" name="name" value="" />
+                    <input type="hidden" name="IdCliente" id="IdCliente" />
+
+                    <input type="text" class="form-control mt-1 input" id="apellidoCliente" name="name" value="" readonly />
 
                 </div>
             </div>
 
             <div class=" d-flex justify-content-start align-items-center mb-3">
-                <div class="col-md-4 p-0 m-0">
-                    <span class="text-muted sizeSpace size-14 mb-2">SEGUNDO APELLIDO</span>
 
-
-
-                    <input type="type" class="form-control mt-1 input" name="name" value="" />
-
-                </div>
 
                 <div class="col-md-4 p-0 m-0 ">
                     <span class="text-muted sizeSpace size-14 mb-2">TÉLEFONO</span>
 
 
 
-                    <input type="type" class="form-control mt-1 input" name="name" value="" />
+                    <input type="text" id="telefono" class="form-control mt-1 input" name="name" value="" readonly />
 
                 </div>
+
                 <div class="col-md-4 p-0 m-0">
                     <span class="text-muted sizeSpace size-14 mb-2">CÉLULAR</span>
 
 
 
-                    <input type="type" class="form-control mt-1 input" name="name" value="" />
+                    <input type="text" id="celular" class="form-control mt-1 input" name="name" value="" readonly />
+
+                </div>
+                <div class="col-md-4 p-0 m-0">
+                    <span class="text-muted sizeSpace size-14 mb-2">DIRECCION</span>
+
+
+
+                    <input type="text" id="direccion" class="form-control mt-1 input" name="name" value="" readonly />
 
                 </div>
             </div>
@@ -138,7 +135,7 @@
     <div class="col-md-11 p-0 m-0" style="display:block;">
         <div class="w-100 p-0 m-0 mb-1">
             <span class="text-primary sizeSpace size-14 p-1">INFORMACIÓN DEL VEHICÚLO</span>
-            
+
         </div>
         <div class="col-md-11 rounded-lg shadow bg-white m-0 p-3">
 
@@ -204,12 +201,12 @@
 
 
         </div>
-          
-        </div>
+
+    </div>
 
 
 
-        <br />
+    <br />
 
     <div class="col-md-11  p-0 m-0" style="display:block;">
         <div class="w-100 p-0 m-0 mb-1">
@@ -227,13 +224,13 @@
                 <div class="col-md-4 p-0 m-0">
                     <span class="text-muted sizeSpace size-14 mb-2">% TASA INTERES</span>
 
-                    @Html.EditorFor(model => model.TasaInteres, new { htmlAttributes = new { @class = "form-control mt-1 input", @id = "tasaInteres" } })
+                    @Html.EditorFor(model => model.TasaInteres, new { htmlAttributes = new { @class = "form-control mt-1 input", @id = "tasaInteres", @readonly = "readonly" } })
                     @Html.ValidationMessageFor(model => model.TasaInteres, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="col-md-4 p-0 m-0">
                     <span class="text-muted sizeSpace size-14 mb-2"> TASA MORA</span>
-                    @Html.EditorFor(model => model.TasaMora, new { htmlAttributes = new { @class = "form-control mt-1 input", @id = "TasaMora" } })
+                    @Html.EditorFor(model => model.TasaMora, new { htmlAttributes = new { @class = "form-control mt-1 input", @id = "TasaMora", @readonly = "readonly" } })
                     @Html.ValidationMessageFor(model => model.TasaMora, "", new { @class = "text-danger" })
                 </div>
 
@@ -244,7 +241,7 @@
             <div class="d-flex justify-content-start align-items-center mb-3">
                 <div class="col-md-4 p-0 m-0">
                     <span class="text-muted sizeSpace size-14 mb-2"> DIA DE GRACIA PARA PAGO</span>
-                    @Html.EditorFor(model => model.TiempoParaMora, new { htmlAttributes = new { @class = "form-control mt-1 input", @id = "TiempoParaMora" } })
+                    @Html.EditorFor(model => model.TiempoParaMora, new { htmlAttributes = new { @class = "form-control mt-1 input", @id = "TiempoParaMora", @readonly = "readonly" } })
                     @Html.ValidationMessageFor(model => model.TiempoParaMora, "", new { @class = "text-danger" })
                 </div>
 
@@ -266,7 +263,7 @@
 
                 <div class="col-md-4 p-0 m-0">
                     <span class="text-muted sizeSpace size-14 mb-2">% INTERES (PARA ABONOS)</span>
-                    @Html.EditorFor(model => model.PorcentajeInteresAbono, new { htmlAttributes = new { @class = "form-control mt-1 input", @id = "PorcentajeInteresAbono" } })
+                    @Html.EditorFor(model => model.PorcentajeInteresAbono, new { htmlAttributes = new { @class = "form-control mt-1 input", @id = "PorcentajeInteresAbono", @readonly = "readonly" } })
                     @Html.ValidationMessageFor(model => model.PorcentajeInteresAbono, "", new { @class = "text-danger" })
 
                     <input id="capital"
@@ -282,8 +279,8 @@
 
                 <div class="col-md-4 p-0 m-0">
                     <span class="text-muted sizeSpace size-14 mb-2">VALOR CUOTA</span>
-                    
-                    <input type="text" class="form-control mt-1 input" name="Cuota" id="Cuota">
+
+                    <input type="text" class="form-control mt-1 input" name="Cuota" id="Cuota" readonly />
                 </div>
 
             </div>
@@ -294,12 +291,12 @@
 
 
 
-            </div>
-
-         
         </div>
 
-        <br />
+
+    </div>
+
+    <br />
     <div class="col-md-6 p-0 m-0" style="display:block;">
         <div class="col-md-6 m-0 p-0">
             <button type="submit" class="bg-success d-flex justify-content-center align-items-center form-control input"><i class="fal fa-save text-white size-14 mr-2"></i> <span class="text-white size-14">Guardar</span></button>
@@ -308,8 +305,10 @@
 
 }
 
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog-custom">
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog" style="max-width: 900px !important;">
+
 
         <div class="modal-content">
             <div class="modal-header">
@@ -498,13 +497,29 @@
 
 
             $.post("getClientes", { cedula: documento }, function (data) {
+                console.log(data);
 
                 if (data.succes == true) {
                     $("#nombreCliente").text("");
-                    $("#nombreCliente").val(data.Nombres);
+                    $("#nombreCliente").val(data.nombreCliente);
+
+                    $("#apellidoCliente").text("");
+                    $("#apellidoCliente").val(data.apellidoCliente);
+
+                    $("#celular").text("");
+                    $("#celular").val(data.celular);
+
+                    $("#telefono").text("");
+                    $("#telefono").val(data.telefono);
+
+                    $("#direccion").text("");
+                    $("#direccion").val(data.direccion);
 
                     $("#IdCliente").text("");
                     $("#IdCliente").val(data.Id);
+
+                    $("#noDocumento").text("");
+                    $("#noDocumento").val($("#noidentificacionNuevoCliente").val());
                 } else {
                     AgregarNuevoCliente();
                 }
@@ -550,6 +565,8 @@
                 });
             });
 
+            $("#noidentificacionNuevoCliente").val($("#noDocumento").val());
+
             $("#myModal").modal('show');
         }
 
@@ -579,6 +596,18 @@
                 $("#nombreCliente").text("");
                 $("#nombreCliente").val(data.nombreCliente);
 
+                $("#apellidoCliente").text("");
+                $("#apellidoCliente").val(data.apellidoCliente);
+
+                $("#celular").text("");
+                $("#celular").val(data.celular);
+
+                $("#telefono").text("");
+                $("#telefono").val(data.telefono);
+
+                $("#direccion").text("");
+                $("#direccion").val(data.direccion);
+
                 $("#IdCliente").text("");
                 $("#IdCliente").val(data.Id);
 
@@ -598,21 +627,21 @@
 
 
 
-                                                                    //$("#noDocumento").on('keypress', function (e) {
-                                                                    //    if (e.which == 13) {
-                                                                    //        var documento = $("#noDocumento").val();
+                                                                                //$("#noDocumento").on('keypress', function (e) {
+                                                                                //    if (e.which == 13) {
+                                                                                //        var documento = $("#noDocumento").val();
 
-                                                                    //        $.post("getClientes", { cedula: documento }, function (data) {
+                                                                                //        $.post("getClientes", { cedula: documento }, function (data) {
 
 
-                                                                    //            $("#nombreCliente").text("");
-                                                                    //            $("#nombreCliente").val(data.Nombres);
+                                                                                //            $("#nombreCliente").text("");
+                                                                                //            $("#nombreCliente").val(data.Nombres);
 
-                                                                    //            $("#clienteId").text("");
-                                                                    //            $("#clienteId").val(data.Nombres);
+                                                                                //            $("#clienteId").text("");
+                                                                                //            $("#clienteId").val(data.Nombres);
 
-                                                                    //        });
-                                                                    //    }
-                                                                    //});
+                                                                                //        });
+                                                                                //    }
+                                                                                //});
     </script>
 }

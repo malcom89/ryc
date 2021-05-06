@@ -170,6 +170,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewsModels\balanceGeneralModelView.cs" />
+    <Compile Include="ViewsModels\cierresModelsViews.cs" />
     <Compile Include="ViewsModels\ClientesViewsmodels.cs" />
     <Compile Include="ViewsModels\loginViewModels.cs" />
     <Compile Include="ViewsModels\PagosModelsViews.cs" />
@@ -377,6 +378,8 @@
     <Content Include="Views\gastosFijos\mantenimientoCajaChica.cshtml" />
     <Content Include="Views\gastosFijos\addMovimientoCajaChica.cshtml" />
     <Content Include="Views\gastosFijos\editarMovimientoCaja.cshtml" />
+    <Content Include="Views\Prestamoes\cierre.cshtml" />
+    <Content Include="Views\Prestamoes\editarPagos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -4,81 +4,108 @@
     ViewBag.Title = "Prestamos";
 }
 
-<h2>Prestamos</h2>
+<div class="w-100 p-0 m-0 d-flex justify-content-start align-items-center">
+    <div class="col-md-10 p-0 m-0 mr-4">
+        <h3 class="text-primary size-20 sizeSpace">LISTADO DE PRESTAMOS</h3>
 
-<p>
-    @Html.ActionLink("Nuevo Prestamo", "Create")
-</p>
-<table class="table" id="generalTable">
-    <thead>
-        <tr>
-            <th>
-                <label>Nombre Cliente</label>
-            </th>
-            <th>
-                <label>Modelo del Vehiculo</label>
-            </th>
+       
+    </div>
+    <div class="col-md-2 p-0 m-0">
+        <p>
+            @Html.ActionLink("NUEVO", "Create", null, new { @class = "form-control mt-1 input bg-warning text-white text-decoration-none pointer d-flex justify-content-center align-items-center" })
+        </p>
+    </div>
+</div>
 
-            <th>
-                <label>Placa</label>
-            </th>
-            <th>
-                <label>Fecha Apertura</label>
-            </th>
-
-            <th>
-                <label>Monto Prestamo</label>
-            </th>
-            <th>
-                <label>Cantidad de Cuotas</label>
-            </th>
-            <th>
-                <label>Monto Cuota</label>
-            </th>
-            <th>
-                <label>Capital Restante</label>
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+<div class="table-responsive bg-white shadow rounded-lg p-3 m-0">
+    <table class="table table-hover" id="generalTable">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Clientes.Nombres)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Modelo.Descripcion)
-                </td>
+                <th>
+                    <label>no. Prestamo</label>
+                </th>
+                <th>
+                    <label>Cliente</label>
+                </th>
+                <th>
+                    <label>Modelo</label>
+                </th>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.NoPlaca)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FechaApertura)
-                </td>
+                <th>
+                    <label>Placa</label>
+                </th>
+                <th>
+                    <label>Fecha Apertura</label>
+                </th>
 
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.MontoPrestamo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Tiempo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Cuota)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem =>  item.BalanceRestante)
-                </td>
-                <td>
-                    @Html.ActionLink("aplicar Pago", "aplicarPago", new { id = item.Id }) |
-                    @Html.ActionLink("aplicar Pago Masivos", "aplicarPagosMasivos", new { id = item.Id }) |
-                    @Html.ActionLink("Detalles", "Details", new { id = item.Id })
-                </td>
+                <th>
+                    <label>Monto Prestamo</label>
+                </th>
+                <th>
+                    <label>Cantidad Cuotas</label>
+                </th>
+                <th>
+                    <label>Monto Cuota</label>
+                </th>
+                <th>
+                    <label>Mora</label>
+                </th>
+                <th>
+                    <label>Capital Restante</label>
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Clientes.Nombres)  @Html.DisplayFor(modelItem => item.Clientes.Apellidos)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Modelo.Descripcion)
+                    </td>
 
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NoPlaca)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaApertura)
+                    </td>
+
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MontoPrestamo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tiempo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cuota)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.moraTotal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BalanceRestante)
+                    </td>
+                    <td>
+                        @Html.ActionLink("aplicar Pago", "aplicarPago", new { id = item.Id }) |
+                        @*@Html.ActionLink("aplicar Pago Masivos", "aplicarPagosMasivos", new { id = item.Id }) |*@
+                        @Html.ActionLink("Detalles", "Details", new { id = item.Id })|
+                        @if (item.tieneMora)
+                        {
+                            @Html.ActionLink("Moras", "editarMora", new { prestamoId = item.Id })
+                        }
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+</div>

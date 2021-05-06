@@ -72,3 +72,9 @@ textarea {
     width: 80%;
     flex-wrap: wrap;
 }
+
+.dropdown-container {
+    display: flex;
+    padding-bottom: 30px;
+    padding-top: 30px;
+}

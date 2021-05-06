@@ -1,0 +1,51 @@
+﻿@model MotoCredito.Entity.gastosFijo
+
+
+    <h3>Esta Seguro que quiere eliminar este Registro?</h3>
+    <div>
+        <h4>GASTO FIJO</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                <label>Tipo de Gasto</label>
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.tipoGastosFijo.descripcion)
+            </dd>
+    
+            <dt>
+                <label>Usuario</label>
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.usuarios.Nombre)
+            </dd>
+    
+            <dt>
+                <label>Descripcion</label>
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.descripcion)
+            </dd>
+    
+            <dt>
+               <label>Fecha</label>
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.fecha)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+    <div class="form-actions no-color">
+        <input type="submit" value="BORRAR" class="btn btn-warning" /> |
+        @Html.ActionLink("Atras", "Index", null, new { @class = "btn btn-info" })
+    </div>
+        }
+    </div>

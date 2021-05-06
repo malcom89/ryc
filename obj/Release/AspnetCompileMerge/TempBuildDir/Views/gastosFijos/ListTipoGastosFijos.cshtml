@@ -1,0 +1,30 @@
+﻿@model IEnumerable<MotoCredito.Entity.tipoGastosFijo>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+
+
+<p>
+    @Html.ActionLink("Nuevo", "createTipoGastos", null, new { @class="btn btn-primary"})
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <label>Descripcion</label>
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "editarTipoGastoFijo", new { id = item.id }) |
+                @Html.ActionLink("Eliminar", "eliminarTipoGastoFijo", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>

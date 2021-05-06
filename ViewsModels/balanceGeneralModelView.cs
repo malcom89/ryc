@@ -12,5 +12,6 @@ namespace MotoCredito.ViewsModels
         public string interesesGenerados { get; set; }
         public string moraAcumulada { get; set; }
         public int cantidadPrestamosActivos { get; set; }
+
     }
 }

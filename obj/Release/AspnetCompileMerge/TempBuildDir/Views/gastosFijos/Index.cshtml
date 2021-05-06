@@ -1,0 +1,112 @@
+﻿@model IEnumerable<MotoCredito.Entity.gastosFijo>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+
+
+<br />
+@Html.ActionLink("Agregar Nuevo", "Create", null, new { @class = "btn btn-primary" })
+<br />
+
+<div class="dropdown-container">
+    <div class="col-md-4 p-0 m-0 mr-3">
+        <span class="text-muted sizeSpace size-14 mb-2">Mes</span>
+
+
+
+        <select class="form-control mt-1" id="mesSelect">
+            <option value="">SELECCIONE MES</option>
+            <option value="1">ENERO</option>
+            <option value="2">FEBRERO</option>
+            <option value="3">MARZO</option>
+            <option value="4">ABRIL</option>
+            <option value="5">MAYO</option>
+            <option value="6">JUNIO</option>
+            <option value="7">JULIO</option>
+            <option value="8">AGOSTO</option>
+            <option value="9">SEPTIEMBRE</option>
+            <option value="10">OCTUBRE</option>
+            <option value="11">NOVIEMBRE</option>
+            <option value="12">DICIEMBRE</option>
+        </select>
+
+    </div>
+    <div class="col-md-4 p-0 m-0 mr-3">
+        <span class="text-muted sizeSpace size-14 mb-2">Año</span>
+
+
+
+        <select class="form-control mt-1" id="anoSelect">
+            <option value="">SELECCIONE AÑO</option>
+            <option value=2020>2020</option>
+            <option value=2021>2021</option>
+            <option value=2022>2022</option>
+            <option value=2023>2023</option>
+        </select>
+
+    </div>
+</div>
+
+
+<table class="table">
+    <tr>
+        <th>
+            <label>Tipo de Gasto</label>
+        </th>
+
+        <th>
+            <label>Descripcion</label>
+        </th>
+        <th>
+            <label>Fecha</label>
+        </th>
+        <th>
+            <label>Monto</label>
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.tipoGastosFijo.descripcion)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.monto)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $.post("getPeriodosUsados", function (data) {
+         $("#anoSelect").text("");
+         $("#anoSelect").append("<option >SELECCIONE AÑO</option>");
+        $.each(data, function (index, value) {
+
+           $("#anoSelect").append("<option value=" + value.ano + ">" + value.ano + "</option>");
+
+           console.log(value);
+
+        });
+
+        });
+    </script>
+}

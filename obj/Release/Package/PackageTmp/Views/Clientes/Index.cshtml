@@ -9,47 +9,55 @@
 <p>
     @Html.ActionLink("Agregar", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            <label>Tipo Identificacion</label>
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NoIdentificacion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Nombres)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Apellidos)
-        </th>
+<div class="table-responsive bg-white shadow rounded-lg p-3 m-0">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    <label>Tipo Identificacion</label>
+                </th>
+                <th>
+                    <label>@Html.DisplayNameFor(model => model.NoIdentificacion)</label>
+                </th>
+                <th>
+                    <label>@Html.DisplayNameFor(model => model.Nombres)</label>
+                </th>
+                <th>
+                    <label>@Html.DisplayNameFor(model => model.Apellidos)</label>
+                </th>
 
-       
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-<tr>
+                <th></th>
+            </tr>
+        </thead>
 
-    <td>
-        @Html.DisplayFor(modelItem => item.Tipoidentificacion1.Descripcion)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.NoIdentificacion)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Nombres)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Apellidos)
-    </td>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
 
-  
-    <td>
-        @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
-        @Html.ActionLink("Detalles", "Details", new { id = item.Id })
-    </td>
-</tr>
-}
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tipoidentificacion1.Descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NoIdentificacion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombres)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Apellidos)
+                    </td>
 
-</table>
+
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+            </tbody>
+
+    </table>
+    
+
+</div>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -231,13 +232,15 @@ namespace MotoCredito.Controllers
                         var pagoAplicar = db.Pagos.FirstOrDefault(x => x.IdPrestamo == pago.prestamoNumero && x.NoPago == cuotaAcual);
 
 
-                        if (pagoAplicar.FechaVencimiento <= DateTime.Now && pago.cuota <= montoTotal)
+                        if (pago.cuota <= montoTotal)
                         {
                             //aplica pago a mora
                             if (pagoAplicar.Mora != null && montoTotal >= pagoAplicar.Mora)
                             {
                                 recibo.moraPagada = recibo.moraPagada != null ? recibo.moraPagada + pagoAplicar.Mora : pagoAplicar.Mora;
                                 montoTotal = montoTotal - pagoAplicar.Mora;
+
+                                pagoAplicar.Mora -= pagoAplicar.Mora;
                             }
 
                             //aplica pago a intereses
@@ -245,10 +248,12 @@ namespace MotoCredito.Controllers
                             {
                                 recibo.InteresPagado = recibo.InteresPagado != null ? recibo.InteresPagado + pagoAplicar.Intereses : pagoAplicar.Intereses;
                                 montoTotal = montoTotal - pagoAplicar.Intereses;
+                                pagoAplicar.Intereses -= pagoAplicar.Intereses;
                             }
                             else if (montoTotal >= 1)
                             {
-                                recibo.InteresPagado = recibo.InteresPagado + montoTotal;
+                                recibo.InteresPagado = recibo.InteresPagado != null ? recibo.InteresPagado + montoTotal : montoTotal;
+                                pagoAplicar.Intereses -= montoTotal;
                                 montoTotal = 0;
                             }
 
@@ -257,6 +262,7 @@ namespace MotoCredito.Controllers
                             {
                                 recibo.CapitalPagado = recibo.CapitalPagado != null ? recibo.CapitalPagado + pagoAplicar.Capital : pagoAplicar.Capital;
                                 pagoAplicar.cubierto = true;
+                                pagoAplicar.Capital -= pagoAplicar.Capital;
                                 montoTotal = montoTotal - pago.capital;
                                 prestamo.BalanceRestante -= (decimal)pago.capital;
 
@@ -266,6 +272,7 @@ namespace MotoCredito.Controllers
                             {
                                 recibo.CapitalPagado = recibo.CapitalPagado != null ? recibo.CapitalPagado + pagoAplicar.Capital : pagoAplicar.Capital;
                                 prestamo.BalanceRestante -= montoTotal;
+                                pagoAplicar.Capital -= montoTotal;
                                 montoTotal = 0;
                             }
 
@@ -411,14 +418,14 @@ namespace MotoCredito.Controllers
         public ActionResult imprimirRecibo(reciboPago recibo)
         {
 
-            
+
 
             var report = new ViewAsPdf("imprimirRecibo", recibo)
             {
-              
-                MinimumFontSize=18,
+
+                MinimumFontSize = 18,
                 PageSize = Rotativa.Options.Size.A8,
-                PageMargins= new Rotativa.Options.Margins(0,5,0,5)
+                PageMargins = new Rotativa.Options.Margins(0, 5, 0, 5)
 
 
 
@@ -518,18 +525,18 @@ namespace MotoCredito.Controllers
         public JsonResult getClientes(string cedula)
         {
             var data = db.Clientes.FirstOrDefault(x => x.NoIdentificacion.Equals(cedula));
-            ClientesViewsmodels clientes = new ClientesViewsmodels();
+    
 
             if (data == null)
             {
-                clientes = new ClientesViewsmodels { succes = false };
+                return Json(new  { succes = false });
             }
             else
             {
 
-                clientes = new ClientesViewsmodels { Id = data.Id, Nombres = data.Nombres + " " + data.Apellidos, succes = true };
+                return Json(new { succes=true, Id = data.Id, nombreCliente = data.Nombres, apellidoCliente = data.Apellidos, celular = data.numeroTelefonico1, telefono = data.numeroTelefonico2, direccion = data.direccion });
             }
-            return Json(clientes);
+         
         }
 
         [HttpPost]
@@ -575,13 +582,20 @@ namespace MotoCredito.Controllers
 
             var NuevoClienteId = 0;
             var nombreCliente = "";
+            var apellidoCliente = "";
+            var celular = "";
+            var telefono = "";
+            var direccion = "";
             try
             {
                 db.Clientes.Add(nuevoCliente);
                 db.SaveChanges();
                 NuevoClienteId = nuevoCliente.Id;
-                nombreCliente = nuevoCliente.Nombres + " " + nuevoCliente.Apellidos;
-
+                nombreCliente = nuevoCliente.Nombres;
+                apellidoCliente = nuevoCliente.Apellidos;
+                celular = nuevoCliente.numeroTelefonico1;
+                telefono = nuevoCliente.numeroTelefonico2;
+                direccion = nuevoCliente.direccion;
             }
             catch
             {
@@ -590,7 +604,7 @@ namespace MotoCredito.Controllers
 
 
 
-            return Json(new { Id = NuevoClienteId, nombreCliente = nombreCliente });
+            return Json(new { Id = NuevoClienteId, nombreCliente = nombreCliente, apellidoCliente = apellidoCliente, celular = celular, telefono = telefono, direccion = direccion });
         }
 
         [HttpPost]
@@ -635,6 +649,147 @@ namespace MotoCredito.Controllers
             return Json(new { success = true, menssage = "Se Aplico descuento a mora del pago No." + pagoNumero + " del prestamo no." + prestamoNumero + " la nueva mora es de " + mora.ToString("C", System.Globalization.CultureInfo.GetCultureInfo("en-au")) });
         }
 
+        public ActionResult cierre()
+        {
+            ViewBag.cierre = "DIA " + DateTime.Now.ToString("dd MMMM yyyy", CultureInfo.CreateSpecificCulture("es-MX"));
+
+            int mesDesde = DateTime.Now.Month;
+            int diaDesde = DateTime.Now.Day;
+            int anoDesde = DateTime.Now.Year;
+            int mesHasta = DateTime.Now.Month;
+            int diaHasta = DateTime.Now.Day;
+            int anoHasta = DateTime.Now.Year;
+
+            var prestamosDados = db.Prestamo.Where(x => x.FechaApertura.Day >= diaDesde && x.FechaApertura.Day <= diaHasta &&
+              x.FechaApertura.Month >= mesDesde && x.FechaApertura.Month <= mesHasta &&
+              x.FechaApertura.Year >= anoDesde && x.FechaApertura.Year <= anoHasta).ToList();
+
+            var pagosRealizados = db.Recibo.Where(x => x.fechaPago.Day >= diaDesde && x.fechaPago.Day <= diaHasta &&
+                x.fechaPago.Month >= mesDesde && x.fechaPago.Month <= mesHasta &&
+                x.fechaPago.Year >= anoDesde && x.fechaPago.Year <= anoHasta).ToList();
+
+            var gastosFijos = db.gastosFijo.Where(x => x.fecha.Day >= diaDesde && x.fecha.Day <= diaHasta &&
+              x.fecha.Month >= mesDesde && x.fecha.Month <= mesHasta &&
+              x.fecha.Year >= anoDesde && x.fecha.Year <= anoHasta).ToList();
+
+            var gastosCajaChica = db.movimientosCajaChica.Where(x => x.fecha.Day >= diaDesde && x.fecha.Day <= diaHasta &&
+              x.fecha.Month >= mesDesde && x.fecha.Month <= mesHasta &&
+              x.fecha.Year >= anoDesde && x.fecha.Year <= anoHasta).ToList();
+
+            var cierre = new cierresModelsViews
+            {
+                abonos = Convert.ToDecimal(pagosRealizados.Sum(x => x.abono)).ToString("C", System.Globalization.CultureInfo.GetCultureInfo("en-au")),
+                capitalCobrado = Convert.ToDecimal(pagosRealizados.Sum(x => x.CapitalPagado)).ToString("C", System.Globalization.CultureInfo.GetCultureInfo("en-au")),
+                interesCobrado = Convert.ToDecimal(pagosRealizados.Sum(x => x.InteresPagado)).ToString("C", System.Globalization.CultureInfo.GetCultureInfo("en-au")),
+                moraCobrada = Convert.ToDecimal(pagosRealizados.Sum(x => x.moraPagada)).ToString("C", System.Globalization.CultureInfo.GetCultureInfo("en-au")),
+
+                montoCobrado = Convert.ToDecimal(pagosRealizados.Sum(x => x.TotalPagado)).ToString("C", System.Globalization.CultureInfo.GetCultureInfo("en-au")),
+
+                montoPrestado = Convert.ToDecimal(prestamosDados.Sum(x => x.MontoPrestamo)).ToString("C", System.Globalization.CultureInfo.GetCultureInfo("en-au")),
+                cantidadPrestamos = prestamosDados.Count(),
+
+                totalGastoCajaChica = Convert.ToDecimal(gastosCajaChica.Where(x => x.tipoMovimientoId == 1).Sum(h => h.monto)).ToString("C", System.Globalization.CultureInfo.GetCultureInfo("en-au")),
+                totalGastosFijos = Convert.ToDecimal(gastosFijos.Sum(x => x.monto)).ToString("C", System.Globalization.CultureInfo.GetCultureInfo("en-au")),
+                totalIngresoCajaChica = Convert.ToDecimal(gastosCajaChica.Where(x => x.tipoMovimientoId == 2).Sum(h => h.monto)).ToString("C", System.Globalization.CultureInfo.GetCultureInfo("en-au")),
+
+                totalEgresos = Convert.ToDecimal(gastosCajaChica.Where(x => x.tipoMovimientoId == 1).Sum(h => h.monto) + gastosFijos.Sum(x => x.monto) + prestamosDados.Sum(x => x.MontoPrestamo)).ToString("C", System.Globalization.CultureInfo.GetCultureInfo("en-au"))
+            };
+            return View(cierre);
+        }
+
+        [HttpPost]
+        public ActionResult cierre(int? alDia, int? Mes, int? Ano)
+        {
+            var comentario = "";
+
+            int mes;
+            int ano;
+
+            var prestamos = db.Prestamo.AsQueryable();
+            var pagos = db.Recibo.AsQueryable();
+            var gastos = db.gastosFijo.AsQueryable();
+            var CajaChica = db.movimientosCajaChica.AsQueryable();
+
+
+            if (alDia == 1)
+            {
+                mes = DateTime.Now.Month;
+                ano = DateTime.Now.Year;
+
+                prestamos = prestamos.Where(x => x.FechaApertura.Day == DateTime.Now.Day);
+                pagos = pagos.Where(x => x.fechaPago.Day == DateTime.Now.Day);
+                gastos = gastos.Where(x => x.fecha.Day == DateTime.Now.Day);
+                CajaChica = CajaChica.Where(x => x.fecha.Day == DateTime.Now.Day);
+
+                comentario= "DIA " + DateTime.Now.ToString("dd MMMM yyyy", CultureInfo.CreateSpecificCulture("es-MX"));
+            }
+            else
+            {
+                var fechaComentario = new DateTime(Ano.Value,Mes.Value,1);
+                comentario = "MES DE " + fechaComentario.ToString("MMMM yyyy", CultureInfo.CreateSpecificCulture("es-MX"));
+                mes = Mes.HasValue ? Mes.Value : DateTime.Now.Month;
+                ano = Ano.HasValue ? Ano.Value : DateTime.Now.Year;
+            }
+
+            var prestamosDados = prestamos.Where(x => x.FechaApertura.Month == mes && x.FechaApertura.Year == ano).ToList();
+
+            var pagosRealizados = pagos.Where(x => x.fechaPago.Month == mes && x.fechaPago.Year >= ano).ToList();
+
+            var gastosFijos = gastos.Where(x => x.fecha.Month == mes && x.fecha.Year == ano).ToList();
+
+            var gastosCajaChica = CajaChica.Where(x => x.fecha.Month == mes && x.fecha.Year == ano).ToList();
+
+            ViewBag.cierre = comentario;
+
+            var cierre = new cierresModelsViews
+            {
+                abonos = Convert.ToDecimal(pagosRealizados.Sum(x => x.abono)).ToString("C", System.Globalization.CultureInfo.GetCultureInfo("en-au")),
+                capitalCobrado = Convert.ToDecimal(pagosRealizados.Sum(x => x.CapitalPagado)).ToString("C", System.Globalization.CultureInfo.GetCultureInfo("en-au")),
+                interesCobrado = Convert.ToDecimal(pagosRealizados.Sum(x => x.InteresPagado)).ToString("C", System.Globalization.CultureInfo.GetCultureInfo("en-au")),
+                moraCobrada = Convert.ToDecimal(pagosRealizados.Sum(x => x.moraPagada)).ToString("C", System.Globalization.CultureInfo.GetCultureInfo("en-au")),
+
+                montoCobrado = Convert.ToDecimal(pagosRealizados.Sum(x => x.TotalPagado)).ToString("C", System.Globalization.CultureInfo.GetCultureInfo("en-au")),
+
+                montoPrestado =Convert.ToDecimal(prestamosDados.Sum(x => x.MontoPrestamo)).ToString("C", System.Globalization.CultureInfo.GetCultureInfo("en-au")),
+                cantidadPrestamos = prestamosDados.Count(),
+
+                totalGastoCajaChica = Convert.ToDecimal(gastosCajaChica.Where(x => x.tipoMovimientoId == 1).Sum(h => h.monto)).ToString("C", System.Globalization.CultureInfo.GetCultureInfo("en-au")),
+                totalGastosFijos = Convert.ToDecimal(gastosFijos.Sum(x => x.monto)).ToString("C", System.Globalization.CultureInfo.GetCultureInfo("en-au")),
+                totalIngresoCajaChica = Convert.ToDecimal(gastosCajaChica.Where(x => x.tipoMovimientoId == 2).Sum(h => h.monto)).ToString("C", System.Globalization.CultureInfo.GetCultureInfo("en-au")),
+                totalEgresos = Convert.ToDecimal(gastosCajaChica.Where(x => x.tipoMovimientoId == 1).Sum(h => h.monto) + gastosFijos.Sum(x => x.monto) + prestamosDados.Sum(x => x.MontoPrestamo)).ToString("C", System.Globalization.CultureInfo.GetCultureInfo("en-au"))
+            };
+            return View(cierre);
+        }
+
+        public ActionResult editarPagos(int prestamoId)
+        {
+            var pagos = db.Pagos.Where(x => x.IdPrestamo == prestamoId).ToList();
+
+            return View(pagos);
+        }
+
+        [HttpPost]
+        public JsonResult aplicarPagosMasivos(string montoMora, string noPago, string noPrestamo, string capital, string interes, string sobrante, string fecha)
+        {
+            var pagoNumero = int.Parse(noPago);
+            var prestamoNumero = int.Parse(noPrestamo);
+
+            var pago = db.Pagos.FirstOrDefault(x => x.NoPago == pagoNumero && x.IdPrestamo == prestamoNumero);
+
+            var mora = decimal.Parse(montoMora);
+
+            pago.Mora = mora;
+            pago.Capital=decimal.Parse(capital);
+            pago.Intereses = decimal.Parse(interes);
+            pago.Sobrante = decimal.Parse(sobrante);
+
+
+            db.Entry(pago).State = EntityState.Modified;
+
+            db.SaveChanges();
+
+            return Json(new { success = true, menssage = "Se Aplico descuento a mora del pago No." + pagoNumero + " del prestamo no." + prestamoNumero + " la nueva mora es de " + mora.ToString("C", System.Globalization.CultureInfo.GetCultureInfo("en-au")) });
+        }
 
     }
 }

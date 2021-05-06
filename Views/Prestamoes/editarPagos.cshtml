@@ -1,0 +1,94 @@
+﻿@model IEnumerable<MotoCredito.Entity.Pagos>
+
+
+
+<label>No. Prestamo:</label> @Html.DisplayFor(model => model.First().IdPrestamo)
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NoPago)
+        </th>
+
+        <th>
+            <label>Monto Cuota</label>
+        </th>
+
+        <th>
+            <label>Capital</label>
+        </th>
+        <th>
+            <label>Intere</label>
+        </th>
+        <th>
+            <label>Mora</label>
+        </th>
+        <th>
+            <label>Abono</label>
+        </th>
+        <th>
+            <label>Fecha</label>
+        </th>
+      
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.NoPago)
+    </td>
+    <td>
+        <input type="text" id="Monto_@item.NoPago" value="@item.Capital" class="form-control" />
+    </td>
+    <td>
+        <input type="text" id="capital_@item.NoPago" value="@item.Capital" class="form-control" />
+    </td>
+    <td>
+        <input type="text" id="interes_@item.NoPago" value="@item.Intereses" class="form-control" />
+    </td>
+    <td>
+        <input type="text" id="mora_@item.NoPago" value="@item.Mora" class="form-control" />
+    </td>
+    <td>
+        <input type="text" id="sobrante_@item.NoPago" value="@item.Sobrante" class="form-control" />
+    </td>
+    <td>
+        <input type="date" id="fechao_@item.NoPago" value="@item.fechaPago" class="form-control" />
+
+    </td>
+    <td>
+        <button class="btn btn-success" onclick="AplicarDescuento(@item.NoPago)">Aplicar</button>
+    </td>
+</tr>
+    }
+
+</table>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        function AplicarDescuento(noPago) {
+            var send = {
+                capital: $("#capital_" + noPago).val(),
+                interes: $("#interes_" + noPago).val(),
+                montoMora: $("#Monto_" + noPago).val(),
+                sobrante: $("#sobrante_" + noPago).val(),
+                fecha: $("#fechao_" + noPago).val(),
+                noPago: noPago,
+                noPrestamo: @Model.First().IdPrestamo
+
+        }
+
+            $.post("aplicarPagosMasivos", send, function (data) {
+
+                if (data.success) {
+                    alert(data.menssage);
+                }
+            })
+        }
+    </script>
+}

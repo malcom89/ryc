@@ -95,7 +95,7 @@
                     </td>
                     <td>
                         @Html.ActionLink("aplicar Pago", "aplicarPago", new { id = item.Id }) |
-                        @*@Html.ActionLink("aplicar Pago Masivos", "aplicarPagosMasivos", new { id = item.Id }) |*@
+                        @Html.ActionLink("aplicar Pago Masivos", "editarPagos", new { prestamoId = item.Id }) |
                         @Html.ActionLink("Detalles", "Details", new { id = item.Id })|
                         @if (item.tieneMora)
                         {

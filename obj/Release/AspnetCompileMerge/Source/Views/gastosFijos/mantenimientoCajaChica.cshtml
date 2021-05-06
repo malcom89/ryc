@@ -1,0 +1,55 @@
+﻿@model IEnumerable<MotoCredito.Entity.movimientosCajaChica>
+
+    <p>
+        @Html.ActionLink("Nuevo Movimiento", "addMovimientoCajaChica")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+               <label>Caja</label>
+            </th>
+            <th>
+               <label>Tipo de Movimiento</label>
+            </th>
+            <th>
+               <label>Usuario</label>
+            </th>
+            <th>
+                <label>Descripcion Movimiento</label>
+            </th>
+            <th>
+                <label>Monto</label>
+            </th>
+            <th>
+                <label>Fecha</label>
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.cajaChica.descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tipoMovimientosCajaChica.descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.usuarios.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.monto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha)
+            </td>
+            <td>
+                @Html.ActionLink("Eliminar", "eliminarMovimientoCaja", new { id=item.id })
+            </td>
+        </tr>
+    }
+    
+    </table>

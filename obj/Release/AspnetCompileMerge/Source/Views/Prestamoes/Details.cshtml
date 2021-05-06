@@ -1,85 +1,175 @@
 ﻿@model MotoCredito.Entity.Prestamo
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalles";
 }
 
-<h2>Details</h2>
+<h2>Detalle de Prestamo</h2>
+
 
 <div>
-    <h4>Prestamo</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Clientes.Nombres)
-        </dt>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label>Nombre Cliente</label>
+            <input type="text" class="form-control" readonly value="@Model.Clientes.Nombres">
+        </div>
+        <div class="form-group col-md-3">
+            <label>Apellido</label>
+            <input type="text" class="form-control" readonly value="@Model.Clientes.Apellidos">
+        </div>
+        <div class="form-group col-md-3">
+            <label>Telefono</label>
+            <input type="text" class="form-control" readonly value="@Model.Clientes.numeroTelefonico1">
+        </div>
+        <div class="form-group col-md-3">
+            <label>Direccion</label>
+            <input type="text" class="form-control" readonly value="@Model.Clientes.direccion">
+        </div>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Clientes.Nombres)
-        </dd>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label>Marca</label>
+            <input type="text" class="form-control" readonly value="@Model.Modelo.Marca.Descripcion">
+        </div>
+        <div class="form-group col-md-3">
+            <label>Modelo</label>
+            <input type="text" class="form-control" readonly value="@Model.Modelo.Descripcion">
+        </div>
+        <div class="form-group col-md-3">
+            <label>Año</label>
+            <input type="text" class="form-control" readonly value="@Model.año">
+        </div>
+        <div class="form-group col-md-3">
+            <label>Color</label>
+            <input type="text" class="form-control" readonly value="@Model.color">
+        </div>
+        <div class="form-group col-md-3">
+            <label>Placa</label>
+            <input type="text" class="form-control" readonly value="@Model.NoPlaca">
+        </div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Modelo.Descripcion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Modelo.Descripcion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NoChasis)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NoChasis)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NoPlaca)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NoPlaca)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FechaApertura)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FechaApertura)
-        </dd>
-
-       
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MontoPrestamo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MontoPrestamo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Tiempo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Tiempo)
-        </dd>
-
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BalanceRestante)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BalanceRestante)
-        </dd>
-
-    </dl>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label>Tipo de Prestamo</label>
+            <input type="text" class="form-control" readonly value="@Model.TipoPrestamo.Descripcion">
+        </div>
+        <div class="form-group col-md-3">
+            <label>Monto Prestado</label>
+            <input type="text" class="form-control" readonly value="@Model.MontoPrestamo">
+        </div>
+        <div class="form-group col-md-3">
+            <label>Capital Restante</label>
+            <input type="text" class="form-control" readonly value="@Model.BalanceRestante">
+        </div>
+        <div class="form-group col-md-3">
+            <label>Cantidad cuota (Meses)</label>
+            <input type="text" class="form-control" readonly value="@Model.Tiempo">
+        </div>
+        <div class="form-group col-md-3">
+            <label>Fecha Apertura</label>
+            <input type="text" class="form-control" readonly value="@Model.FechaApertura.ToShortDateString()">
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<br />
+<div class="mini-card" style="width: 100%;">
+    <div class="mini-card-header">
+        <label>Resumen de Ingresos</label>
+    </div>
+    <div class="">
+        <dl class="dl-horizontal">
+
+            <dt>
+                <label>Capital pagado</label>
+            </dt>
+
+            <dd>
+                @Model.Pagos.Where(x=>x.cubierto).Sum(p=>p.Capital)
+            </dd>
+            <dt>
+                <label>Intereses Pagados</label>
+            </dt>
+
+            <dd>
+                @Model.Pagos.Where(x => x.cubierto).Sum(p => p.Intereses)
+            </dd>
+            <dt>
+                <label>Mora Pagada</label>
+            </dt>
+
+            <dd>
+                @Model.Pagos.Where(x => x.cubierto).Sum(p => p.Mora)
+            </dd>
+        </dl>
+
+    </div>
+</div>
+<br />
+<div>
+
+    <table class="table">
+        <tr>
+            <th>
+                Pago Numero
+            </th>
+
+            <th>
+                Capital
+            </th>
+
+            <th>
+                Interes
+            </th>
+            <th>
+                Mora
+            </th>
+            <th>
+                Fecha Vencimiento
+            </th>
+            <th>
+                Fecha Pagoo
+            </th>
+            <th>
+                Pago Aplicado
+            </th>
+        </tr>
+
+        @foreach (var item in Model.Pagos)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NoPago)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Capital)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Intereses)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mora)
+                </td>
+                <td>
+                    @item.FechaVencimiento.ToShortDateString()
+                </td>
+
+                <td>
+                    @if (item.cubierto)
+                    {
+                        @item.fechaPago.ToShortDateString()
+                    }
+                </td>
+
+                <td>
+
+                    @Html.DisplayFor(modelItem => item.cubierto)
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>

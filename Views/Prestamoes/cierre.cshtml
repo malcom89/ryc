@@ -1,0 +1,199 @@
+﻿@model MotoCredito.ViewsModels.cierresModelsViews
+
+
+<div class=" col-md-10 w-100 p-0 m-0 d-flex justify-content-start align-items-center">
+    <div class="col-md-10 p-0 m-0 mr-4">
+
+        <h3 class="text-primary sizeSpace size-20">CIERRE DEL @ViewBag.cierre</h3>
+
+
+    </div>
+    <div class="col-md-2 p-0 m-0">
+        <p>
+            @Html.ActionLink("REGRESAR", "index", null, new { @class = "form-control mt-1 input bg-warning text-white text-decoration-none pointer d-flex justify-content-center align-items-center" })
+        </p>
+    </div>
+</div>
+
+
+
+
+<div class="col-md-10 p-0 m-0">
+
+    <div class="col-md-12 bg-white rounded-lg shadow-lg m-0 p-3">
+        @using (Html.BeginForm("cierre", "Prestamoes", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+
+            <div class=" d-flex justify-content-start align-items-center">
+                <div class="col-md-3 p-0 m-0 mr-3">
+                    <span class="text-muted sizeSpace size-14 mb-2">TIPO DE CIERRE</span>
+
+
+
+                    <select name="alDia" class="form-control mt-1 input">
+                        <option value=1>AL DIA</option>
+                        <option value=0>POR MES</option>
+                    </select>
+
+                </div>
+
+                <div class="col-md-3 p-0 m-0 mr-3">
+                    <span class="text-muted sizeSpace size-14 mb-2">MES</span>
+
+                    <select name="Mes" class="form-control mt-1 input">
+                        <option value=0>SELECCIONE</option>
+                        <option value=1>ENERO</option>
+                        <option value=2>FEBRERO</option>
+                        <option value=3>MARZO</option>
+                        <option value=4>ABRIL</option>
+                        <option value=5>MAYO</option>
+                        <option value=6>JUNIO</option>
+                        <option value=7>JULIO</option>
+                        <option value=8>AGOSTO</option>
+                        <option value=9>SEPTIEMBRE</option>
+                        <option value=10>OCTUBRE</option>
+                        <option value=11>NOVIEMBRE</option>
+                        <option value=12>DICIEMBRE</option>
+                    </select>
+
+                </div>
+                <div class="col-md-3 p-0 m-0 mr-3">
+                    <span class="text-muted sizeSpace size-14 mb-2">AÑO</span>
+                    <select name="Ano" class="form-control mt-1 input">
+                        <option value=0>SELECCIONE</option>
+                        <option value=2020>2020</option>
+                        <option value=2021>2021</option>
+                        <option value=2022>2022</option>
+                        <option value=2023>2023</option>
+                        <option value=2024>2024</option>
+                        <option value=2025>2025</option>
+                    </select>
+
+                </div>
+                <div class="col-md-3 p-0 m-0">
+                    <span class="text-white sizeSpace size-14 mb-2">.</span>
+
+
+
+                    <button type="submit" class="input bg-primary d-flex justify-content-center align-items-center" id="buscarButton">
+                        <i class="fas fa-search text-white mr-3"></i> <span class="text-white">Buscar</span>
+                    </button>
+
+                </div>
+            </div>
+        }
+    </div>
+    
+
+</div>
+
+<br />
+
+<div class="col-md-11  p-0 m-0" style="display:block;">
+    <div class="w-100 p-0 m-0 mb-1">
+        <span class="text-primary sizeSpace size-14 p-1">INGRESOS</span>
+    </div>
+    <div class="col-md-11 rounded-lg shadow-lg bg-white m-0 p-3">
+
+
+        <div class=" d-flex justify-content-start align-items-center mb-3">
+            <div class="col-md-4 p-0 m-0 ">
+                <span class="text-muted sizeSpace size-14 mb-2">CAPITAL</span>
+
+                @*<input type="text" id="prestamosActivos" class="form-control mt-1 input" name="capitalCobrado" value="" readonly />*@
+                @Html.EditorFor(model => model.capitalCobrado, new { htmlAttributes = new { @class = "form-control mt-1 input",  @readonly = "readonly" } })
+
+            </div>
+
+
+            <div class="col-md-4 p-0 m-0">
+                <span class="text-muted sizeSpace size-14 mb-2">ABONO</span>
+                @Html.EditorFor(model => model.abonos, new { htmlAttributes = new { @class = "form-control mt-1 input", @readonly = "readonly" } })
+            
+
+            </div>
+        </div>
+
+        <div class=" d-flex justify-content-start align-items-center mb-3">
+
+
+            <div class="col-md-4 p-0 m-0 ">
+                <span class="text-muted sizeSpace size-14 mb-2">INTERES</span>
+
+                @Html.EditorFor(model => model.interesCobrado, new { htmlAttributes = new { @class = "form-control mt-1 input", @readonly = "readonly" } })
+
+
+            </div>
+
+            <div class="col-md-4 p-0 m-0">
+                <span class="text-muted sizeSpace size-14 mb-2">MORA</span>
+
+                @Html.EditorFor(model => model.moraCobrada, new { htmlAttributes = new { @class = "form-control mt-1 input", @readonly = "readonly" } })
+
+            </div>
+            <div class="col-md-4 p-0 m-0">
+                <span class="text-muted sizeSpace size-14 mb-2">TOTAL</span>
+
+                @Html.EditorFor(model => model.montoCobrado, new { htmlAttributes = new { @class = "form-control mt-1 input", @readonly = "readonly" } })
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<br />
+
+<div class="col-md-11  p-0 m-0" style="display:block;">
+    <div class="w-100 p-0 m-0 mb-1">
+        <span class="text-primary sizeSpace size-14 p-1">EGRESOS</span>
+    </div>
+    <div class="col-md-11 rounded-lg shadow-lg bg-white m-0 p-3">
+
+
+        <div class=" d-flex justify-content-start align-items-center mb-3">
+            <div class="col-md-4 p-0 m-0 ">
+                <span class="text-muted sizeSpace size-14 mb-2">CANTIDAD PRESTAMOS</span>
+
+                @Html.EditorFor(model => model.cantidadPrestamos, new { htmlAttributes = new { @class = "form-control mt-1 input", @readonly = "readonly" } })
+
+            </div>
+
+
+            <div class="col-md-4 p-0 m-0">
+                <span class="text-muted sizeSpace size-14 mb-2">MONTO PRESTADO</span>
+                @Html.EditorFor(model => model.montoPrestado, new { htmlAttributes = new { @class = "form-control mt-1 input", @readonly = "readonly" } })
+
+
+            </div>
+        </div>
+
+        <div class=" d-flex justify-content-start align-items-center mb-3">
+
+
+            <div class="col-md-4 p-0 m-0 ">
+                <span class="text-muted sizeSpace size-14 mb-2">TOTAL GASTOS FIJOS</span>
+
+                @Html.EditorFor(model => model.totalGastosFijos, new { htmlAttributes = new { @class = "form-control mt-1 input", @readonly = "readonly" } })
+
+
+            </div>
+
+            <div class="col-md-4 p-0 m-0">
+                <span class="text-muted sizeSpace size-14 mb-2">TOTAL GASTOS CAJA CHICA</span>
+
+                @Html.EditorFor(model => model.totalGastoCajaChica, new { htmlAttributes = new { @class = "form-control mt-1 input", @readonly = "readonly" } })
+
+
+            </div>
+            <div class="col-md-4 p-0 m-0">
+                <span class="text-muted sizeSpace size-14 mb-2">TOTAL</span>
+
+
+                @Html.EditorFor(model => model.totalEgresos, new { htmlAttributes = new { @class = "form-control mt-1 input", @readonly = "readonly" } })
+               
+
+            </div>
+        </div>
+    </div>
+
+</div>
