@@ -142,9 +142,10 @@ namespace MotoCredito.Controllers
             var res = new Res<Task>();
             try
             {
-                var user = await db.usuarios.FirstOrDefaultAsync(x => x.UserLogin.Equals(login.userLogin));
-                var claveEncri = encriptar(login.clave);
-                if (user.clave.Equals(claveEncri))
+                var clave = encriptar(login.clave);
+                var user = await db.usuarios.FirstOrDefaultAsync(x => x.UserLogin.Equals(login.userLogin) && x.clave.Equals(clave));
+                
+                if (user != null)
                 {
                     System.Web.HttpContext.Current.Session.Add("user", user);
                     res.ok = 200;

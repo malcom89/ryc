@@ -27,11 +27,15 @@ $(document).ready(function () {
                     
                     if (Number(res.ok) === 200) {
 
-                        $(".loading").addClass("d-none");
+                        
+                        location.href = "/Prestamoes/Index";
+                        setTimeout(() => {
+                            $(".loading").addClass("d-none");
+                        }, 800);
 
                     } else if (Number(res.ok) === 300) {
 
-                        Swal.fire("Oops", String(res.err), "info");
+                        Swal.fire("Oops", "<span class='size-14'>'"+String(res.err)+"'</span>", "info");
                         $(".loading").addClass("d-none");
 
                     } else if (Number(res.ok) === 404) {
@@ -83,7 +87,7 @@ $(document).ready(function () {
         return isValid;
     }
 
-    $("#usuario").click((e) => {
+    $("#usuario").focus((e) => {
         e.preventDefault();
         $("#usuario").removeClass("border-danger");
         $("#usuarioAlert").addClass("d-none");
@@ -93,7 +97,7 @@ $(document).ready(function () {
 
    
 
-    $("#password").click((e) => {
+    $("#password").focus((e) => {
         e.preventDefault();
         $("#password").removeClass("border-danger");
         $("#passwordAlert").addClass("d-none");

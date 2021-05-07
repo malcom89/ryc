@@ -178,7 +178,6 @@ C:\Users\Luis Mnauel Andujar\Desktop\Proyecto Personales\ryc\bin\es\System.Web.R
 C:\Users\Luis Mnauel Andujar\Desktop\Proyecto Personales\ryc\bin\es\System.Web.WebPages.resources.dll
 C:\Users\Luis Mnauel Andujar\Desktop\Proyecto Personales\ryc\bin\es\System.Web.WebPages.Deployment.resources.dll
 C:\Users\Luis Mnauel Andujar\Desktop\Proyecto Personales\ryc\bin\es\System.Web.WebPages.Razor.resources.dll
-C:\Users\Luis Mnauel Andujar\Desktop\Proyecto Personales\ryc\obj\Debug\MotoCredito.csprojAssemblyReference.cache
 C:\Users\Luis Mnauel Andujar\Desktop\Proyecto Personales\ryc\obj\Debug\MotoCredito.csproj.CoreCompileInputs.cache
 C:\Users\Luis Mnauel Andujar\Desktop\Proyecto Personales\ryc\obj\Debug\MotoCredito.csproj.CopyComplete
 C:\Users\Luis Mnauel Andujar\Desktop\Proyecto Personales\ryc\obj\Debug\MotoCredito.dll
@@ -367,3 +366,7 @@ C:\Users\luis.andujar\Desktop\Redux\ryc\obj\Debug\MotoCredito.csprojAssemblyRefe
 C:\Users\luis.andujar\Desktop\Redux\ryc\obj\Debug\MotoCredito.csproj.CopyComplete
 C:\Users\luis.andujar\Desktop\Redux\ryc\obj\Debug\MotoCredito.dll
 C:\Users\luis.andujar\Desktop\Redux\ryc\obj\Debug\MotoCredito.pdb
+C:\Users\Luis Mnauel Andujar\Desktop\Proyecto Personales\ryc\bin\System.Net.Http.Formatting.dll
+C:\Users\Luis Mnauel Andujar\Desktop\Proyecto Personales\ryc\bin\System.Web.Http.dll
+C:\Users\Luis Mnauel Andujar\Desktop\Proyecto Personales\ryc\bin\System.Net.Http.Formatting.xml
+C:\Users\Luis Mnauel Andujar\Desktop\Proyecto Personales\ryc\bin\System.Web.Http.xml

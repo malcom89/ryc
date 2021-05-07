@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MotoCredito.Entity;
+using MotoCredito.Helpers;
 using MotoCredito.ViewsModels;
 using Rotativa;
 
@@ -18,7 +19,7 @@ namespace MotoCredito.Controllers
         private dbcontext db = new dbcontext();
         readonly usuarios user = (usuarios)System.Web.HttpContext.Current.Session["user"];
 
-
+        [AuthorizePermiso("prestamos:list")]
         public ActionResult Index()
         {
             //generarMora();
