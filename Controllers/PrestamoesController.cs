@@ -19,7 +19,7 @@ namespace MotoCredito.Controllers
         private dbcontext db = new dbcontext();
         readonly usuarios user = (usuarios)System.Web.HttpContext.Current.Session["user"];
 
-        [AuthorizePermiso("prestamos:list")]
+        [AuthorizePermiso("Prestamos:Lista")]
         public ActionResult Index()
         {
             //generarMora();
@@ -61,7 +61,7 @@ namespace MotoCredito.Controllers
             return View(prestamo);
         }
 
-
+        [AuthorizePermiso("Prestamos:Crear")]
         public ActionResult Create()
         {
             ViewBag.IdCliente = new SelectList(db.Clientes, "Id", "Nombres");
@@ -74,6 +74,7 @@ namespace MotoCredito.Controllers
         // POST: Prestamoes/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        [AuthorizePermiso("Prestamos:Crear")]
         [HttpPost]
         //[ValidateAntiForgeryToken]
         public ActionResult Create(PrestamosModelsViews prestamo)

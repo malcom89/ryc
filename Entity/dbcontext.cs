@@ -29,6 +29,7 @@ namespace MotoCredito.Entity
         public virtual DbSet<tipoMovimientosCajaChica> tipoMovimientosCajaChica { get; set; }
         public virtual DbSet<TipoPrestamo> TipoPrestamo { get; set; }
         public virtual DbSet<usuarios> usuarios { get; set; }
+        public virtual DbSet<UserLoger> UserLoger { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

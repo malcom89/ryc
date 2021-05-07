@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -144,13 +145,77 @@ namespace MotoCredito.Controllers
             {
                 var clave = encriptar(login.clave);
                 var user = await db.usuarios.FirstOrDefaultAsync(x => x.UserLogin.Equals(login.userLogin) && x.clave.Equals(clave));
-                
+
                 if (user != null)
                 {
+
+                    string nombreMaquina = string.Empty;
+
+                    nombreMaquina = Dns.GetHostName();
+
+                    IPAddress[] ips = Dns.GetHostAddresses(nombreMaquina);
+
+                    string ipMaquina = ips[0].ToString();
+
+                    var isLogers = await db.UserLoger.Where(x => x.nombreMaquina == nombreMaquina && x.ipMaquina == ipMaquina).ToListAsync();
+
+
+                    if (isLogers.Count > 0)
+                    {
+                        foreach (var isLoger in isLogers)
+                        {
+                            db.Entry(isLoger).State = EntityState.Deleted;
+                            await db.SaveChangesAsync();
+                        }
+
+                        var userLoger = new UserLoger
+                        {
+                            idLoger = 0,
+                            idUsuario = user.Id,
+                            nombreMaquina = nombreMaquina,
+                            ipMaquina = ipMaquina,
+                            estatuSession = 1,
+                            expirationSession = DateTime.UtcNow.AddHours(12)
+
+
+                        };
+
+                        db.UserLoger.Add(userLoger);
+                        await db.SaveChangesAsync();
+
+                    }
+                    else
+                    {
+
+
+                        var userLoger = new UserLoger
+                        {
+                            idLoger = 0,
+                            idUsuario = user.Id,
+                            nombreMaquina = nombreMaquina,
+                            ipMaquina = ipMaquina,
+                            estatuSession = 1,
+                            expirationSession = DateTime.UtcNow.AddHours(12)
+
+
+                        };
+
+                        db.UserLoger.Add(userLoger);
+                        await db.SaveChangesAsync();
+
+                    }
+
+
+
+
                     System.Web.HttpContext.Current.Session.Add("user", user);
                     res.ok = 200;
 
-                } else
+
+
+
+                }
+                else
                 {
                     res.ok = 300;
                     res.err = "USUARIO O CONTRASEÑA SON INCORRECTO INTENTE NUEVAMENTE";
@@ -169,9 +234,9 @@ namespace MotoCredito.Controllers
                 res.err = serror;
                 return Json(res, JsonRequestBehavior.AllowGet);
             }
-           
-           
-            
+
+
+
         }
 
         public static string encriptar(string word)
@@ -183,6 +248,35 @@ namespace MotoCredito.Controllers
         {
             byte[] b = Convert.FromBase64String(word);
             return System.Text.Encoding.UTF8.GetString(b);
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> Logout()
+        {
+
+            var res = new Res<Task>();
+            string nombreMaquina = string.Empty;
+
+            nombreMaquina = Dns.GetHostName();
+
+            IPAddress[] ips = Dns.GetHostAddresses(nombreMaquina);
+
+            string ipMaquina = ips[0].ToString();
+
+            var isLogers = await db.UserLoger.Where(x => x.nombreMaquina == nombreMaquina && x.ipMaquina == ipMaquina).ToListAsync();
+
+
+            if (isLogers.Count > 0)
+            {
+                foreach (var isLoger in isLogers)
+                {
+                    db.Entry(isLoger).State = EntityState.Deleted;
+                    await db.SaveChangesAsync();
+                }
+
+            }
+
+            return Json(res, JsonRequestBehavior.AllowGet);
         }
     }
 }

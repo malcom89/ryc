@@ -105,5 +105,29 @@ $(document).ready(function () {
     });
 
 
+    $("#logou").click((e) => {
+        e.preventDefault();
+
+        $.ajax({
+
+            url: "/usuarios/Logout",
+            async: true,
+            type: "POST",
+            dataType: "json",
+            success: (res) => {
+
+
+               
+
+                location.href = "/usuarios/login";
+                  
+
+                
+                
+
+            }
+
+        })
+    })
 
 });

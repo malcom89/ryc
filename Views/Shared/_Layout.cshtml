@@ -87,6 +87,14 @@
                 <div class="h-100 p-0 m-0 d-flex justify-content-start align-items-center">
                     <i class="fal fa-bars text-primary size-20 ml-3 pointer" id="menu"></i>
                 </div>
+
+                <div class="h-100 p-0 m-0  d-flex justify-content-start align-items-center loginPerfil">
+                    <div class="mr-2 p-1">
+                        <span class="text-muted size-14 sizeSpace">MARCOS ANTONIO</span>
+                    </div>
+                    <img src="~/Content/credito.jpg" width="80" height="80" class="img-thumbnail mr-3"  alt="Alternate Text" />
+                    
+                </div>
             </div>
             <div class="p-3 m-0" style="background: #f9f8f8;">
                 <br />
@@ -97,6 +105,37 @@
      
     </div>
 
+    <div id="log">
+        <div class="col-md-3 p-0 m-0 position-fixed bg-white shadow-lg min-vh-100 " style="top:0px; right:-700px;   transition: 0.3s all ease-in-out;  z-index:9999;" id="cajaUser">
+            <div class="w-100 m-0 p-0 pl-2 pr-2 d-flex flex-column">
+                <div class="h-100 p-0 m-0 p-2 d-flex justify-content-start align-items-center">
+                    <img src="~/Content/credito.jpg" width="80" height="80" class="img-thumbnail mr-2" alt="Alternate Text" />
+                    <div class="mr-2">
+                        <span class="text-muted size-14 sizeSpace">MARCOS ANTONIO</span>
+                    </div>
+
+                </div>
+                <hr />
+
+                <div class="h-100 p-0 m-0 p-2 d-flex justify-content-start align-items-center pointer">
+                    <i class="fas fa-user text-primary size-14 mr-2"></i>
+
+                    <span class="text-muted size-14 ">MI PERFIL</span>
+
+
+                </div>
+
+                <div class="h-100 p-0 m-0 p-2 d-flex justify-content-start align-items-center pointer" id="logou">
+                    <i class="fas fa-sign-out-alt text-primary size-14 mr-2"></i>
+
+                    <span class="text-muted size-14 ">CERRAR SESSIÓN</span>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
     @*<div class="container body-content">
         <br />
         
@@ -130,6 +169,7 @@
     </script>
     <link href="~/CSS/sidebar.css" rel="stylesheet" />
     <script src="~/JS/sidebar.js"></script>
+    <script src="~/JS/Auth.js"></script>
 
 </body>
 </html>

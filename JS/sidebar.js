@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
 
+    var time1;
     $('.nav-item > .drop').click(function (e) {
         e.preventDefault();
 
@@ -38,4 +39,44 @@
             $('#content').addClass('col-md-12');
         }
     })
+
+
+
+    $(document).click((e) => {
+        
+        var $target = $(e.target);
+
+
+        if (!$target.closest('#log').length &&
+            !$target.closest('.loginPerfil').length &&
+            
+
+            $('#log').is(":visible") &&
+            $('.loginPerfil').is(":visible") 
+            
+
+        ) {
+            // $('#acceder').slideUp('fast');
+            $('#cajaUser').css("right", "-700px");
+            clearTimeout(time1);
+        } else {
+
+        }
+
+    })
+
+    $(".loginPerfil").click((e) => {
+
+
+        e.preventDefault();
+        console.log('funciona')
+
+        time1 = setTimeout(() => {
+
+            $("#cajaUser").css("right", "0px");
+
+        }, 20);
+
+
+    });
 })

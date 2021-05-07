@@ -170,6 +170,7 @@
     <Compile Include="Entity\Tipoidentificacion.cs" />
     <Compile Include="Entity\tipoMovimientosCajaChica.cs" />
     <Compile Include="Entity\TipoPrestamo.cs" />
+    <Compile Include="Entity\UserLoger.cs" />
     <Compile Include="Entity\usuarios.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
