@@ -278,5 +278,45 @@ namespace MotoCredito.Controllers
 
             return Json(res, JsonRequestBehavior.AllowGet);
         }
+
+
+        [HttpPost]
+        public async Task<JsonResult> LogoutAll()
+        {
+
+            var res = new Res<Task>();
+            string nombreMaquina = string.Empty;
+
+            nombreMaquina = Dns.GetHostName();
+
+            IPAddress[] ips = Dns.GetHostAddresses(nombreMaquina);
+
+            string ipMaquina = ips[0].ToString();
+
+            var isLogers = await db.UserLoger.Where(x => x.nombreMaquina == nombreMaquina && x.ipMaquina == ipMaquina).ToListAsync();
+
+
+            if (isLogers.Count > 0)
+            {
+                var idUser = isLogers[0].idUsuario;
+                   var sessionAll = await db.UserLoger.Where(x => x.idUsuario == idUser).ToListAsync();
+               
+                    if (sessionAll.Count > 0)
+                    {
+                        foreach (var session in sessionAll)
+                        {
+                            db.Entry(session).State = EntityState.Deleted;
+                            await db.SaveChangesAsync();
+                        }
+                    }
+                
+
+              
+               
+
+            }
+
+            return Json(res, JsonRequestBehavior.AllowGet);
+        }
     }
 }

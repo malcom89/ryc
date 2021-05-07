@@ -16,8 +16,10 @@
     <link href="https://pro.fontawesome.com/releases/v5.12.0/css/all.css" rel="stylesheet" />
     
 </head>
-<body class=" p-0 m-0 min-vh-100 bg-muted" >
-
+<body class=" p-0 m-0 min-vh-100 bg-muted">
+    <div class="loading d-none">
+        <div class="loader"></div>
+    </div>
     <div class="w-100 min-vh-100 p-0 m-0 bg-muted d-flex justify-content-start">
 
         <div class="col-md-3 min-vh-100 p-0 m-0 bg-white shadow mr-3" style="overflow:hidden;" id="sideba">
@@ -28,13 +30,13 @@
                 <ul class="nav w-100 p-4 m-0 d-flex flex-column">
 
                     <li class="nav-item p-0 m-0 w-100 mb-4">
-                        <a href="#" class="nav-link p-0 m-0 w-100 d-flex justify-content-between align-items-center drop" >
+                        <a href="#" class="nav-link p-0 m-0 w-100 d-flex justify-content-between align-items-center drop">
                             <span class="p-0 m-0">
                                 <i class="fas fa-list text-primary size-20 mr-3"></i> <span class="size-14 text-muted sizeSpace">MANTENIMIENTO</span>
                             </span>
                             <i class="fas fa-chevron-down text-muted size-14"></i>
                         </a>
-                        <ul class="nav w-100 p-0 m-0  d-flex flex-column d-none uld" >
+                        <ul class="nav w-100 p-0 m-0  d-flex flex-column d-none uld">
                             <br />
                             <li class="nav-item p-0 m-0 mb-3">@Html.ActionLink("Clientes", "Index", "Clientes", null, new { @class = "text-muted text-decoration-none size-14" })</li>
                             <li class="nav-item p-0 m-0 mb-3">@Html.ActionLink("Marcas", "Index", "Marcas", null, new { @class = "text-muted text-decoration-none size-14" })</li>
@@ -63,7 +65,7 @@
                     </li>
 
                     <li class="nav-item p-0 m-0 w-100 mb-4">
-                        <a href="#" class="nav-link p-0 m-0 w-100 d-flex justify-content-between align-items-center drop" >
+                        <a href="#" class="nav-link p-0 m-0 w-100 d-flex justify-content-between align-items-center drop">
                             <span class="p-0 m-0">
                                 <i class="fas fa-user text-primary size-20 mr-3"></i> <span class="size-14 text-muted sizeSpace">ADMINISTRATIVOS</span>
                             </span>
@@ -88,12 +90,12 @@
                     <i class="fal fa-bars text-primary size-20 ml-3 pointer" id="menu"></i>
                 </div>
 
-                <div class="h-100 p-0 m-0  d-flex justify-content-start align-items-center loginPerfil">
+                <div class="h-100 p-0 m-0  d-flex justify-content-start align-items-center loginPerfil pointer">
                     <div class="mr-2 p-1">
                         <span class="text-muted size-14 sizeSpace">MARCOS ANTONIO</span>
                     </div>
-                    <img src="~/Content/credito.jpg" width="80" height="80" class="img-thumbnail mr-3"  alt="Alternate Text" />
-                    
+                    <img src="~/Content/credito.jpg" width="80" height="80" class="img-thumbnail mr-3" alt="Alternate Text" />
+
                 </div>
             </div>
             <div class="p-3 m-0" style="background: #f9f8f8;">
@@ -102,7 +104,7 @@
             </div>
         </div>
 
-     
+
     </div>
 
     <div id="log">
@@ -125,6 +127,21 @@
 
                 </div>
 
+                <div class="h-100 p-0 m-0 p-2 d-flex justify-content-start align-items-center pointer">
+                    <i class="fas fa-cog text-primary size-14 mr-2"></i>
+
+                    <span class="text-muted size-14 ">CONFIGURACIÓN</span>
+
+
+                </div>
+                <div class="h-100 p-0 m-0 p-2 d-flex justify-content-start align-items-center pointer" id="logouAll">
+                    <i class="fas fa-sign-out-alt text-primary size-14 mr-2"></i>
+
+                    <span class="text-muted size-14 ">CERRAR SESSIÓN EN TODOS LOS DISPOSITIVOS</span>
+
+
+                </div>
+                <hr />
                 <div class="h-100 p-0 m-0 p-2 d-flex justify-content-start align-items-center pointer" id="logou">
                     <i class="fas fa-sign-out-alt text-primary size-14 mr-2"></i>
 
@@ -137,13 +154,13 @@
 
     </div>
     @*<div class="container body-content">
-        <br />
-        
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Moto Credito</p>
-        </footer>
-    </div>*@
+            <br />
+
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Moto Credito</p>
+            </footer>
+        </div>*@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
@@ -167,9 +184,11 @@
             });
         });
     </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.7/dist/sweetalert2.min.css">
     <link href="~/CSS/sidebar.css" rel="stylesheet" />
     <script src="~/JS/sidebar.js"></script>
     <script src="~/JS/Auth.js"></script>
+
 
 </body>
 </html>

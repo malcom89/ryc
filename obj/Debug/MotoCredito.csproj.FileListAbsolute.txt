@@ -370,4 +370,3 @@ C:\Users\Luis Mnauel Andujar\Desktop\Proyecto Personales\ryc\bin\System.Net.Http
 C:\Users\Luis Mnauel Andujar\Desktop\Proyecto Personales\ryc\bin\System.Web.Http.dll
 C:\Users\Luis Mnauel Andujar\Desktop\Proyecto Personales\ryc\bin\System.Net.Http.Formatting.xml
 C:\Users\Luis Mnauel Andujar\Desktop\Proyecto Personales\ryc\bin\System.Web.Http.xml
-C:\Users\Luis Mnauel Andujar\Desktop\Proyecto Personales\ryc\obj\Debug\MotoCredito.csprojAssemblyReference.cache

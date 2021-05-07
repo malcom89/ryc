@@ -125,7 +125,7 @@ table tbody tr td {
 
 
 .loading {
-    overflow:hidden;
+    overflow: hidden;
     background: #000102d9;
     min-height: 100vh;
     position: absolute;
@@ -133,6 +133,7 @@ table tbody tr td {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 999999;
 }
 
 .loader {
@@ -189,6 +190,11 @@ table tbody tr td {
 
 .rig {
     width: 0% !important;
+}
+
+
+.loginPerfil:hover {
+    background:#e7e7e7 !important;
 }
 
 

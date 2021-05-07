@@ -107,7 +107,7 @@ $(document).ready(function () {
 
     $("#logou").click((e) => {
         e.preventDefault();
-
+        $(".loading").removeClass("d-none");
         $.ajax({
 
             url: "/usuarios/Logout",
@@ -122,12 +122,48 @@ $(document).ready(function () {
                 location.href = "/usuarios/login";
                   
 
-                
+                setTimeout(() => {
+                    $(".loading").addClass("d-none");
+                }, 800);
                 
 
             }
 
         })
+    })
+
+
+    $("#logouAll").click((e) => {
+        e.preventDefault();
+
+                    $(".loading").removeClass("d-none");
+                    $.ajax({
+
+                        url: "/usuarios/LogoutAll",
+                        async: true,
+                        type: "POST",
+                        dataType: "json",
+                        success: (res) => {
+
+
+
+
+                            location.href = "/usuarios/login";
+
+
+
+                            setTimeout(() => {
+                                $(".loading").addClass("d-none");
+                            }, 800);
+
+                        }
+
+                    })
+               
+            
+        
+       
+      
     })
 
 });
