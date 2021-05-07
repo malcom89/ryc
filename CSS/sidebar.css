@@ -21,7 +21,7 @@ body {
     padding-left:10px !important;
 }
 
-.text-muted {
+.text-mutedd {
     color: #e3e3e3;
 }
 
@@ -71,10 +71,10 @@ table thead tr {
 
     table thead tr th label {
         display: inline-block;
-        color: #6c7592;
+        color: #0d6efdc2 !important;
         font-size: 14px;
         font-weight: 600;
-        text-transform:uppercase;
+        text-transform: uppercase;
     }
 
 
@@ -97,7 +97,7 @@ table tbody tr td {
 .dt-button {
     border: none !important;
     background: #f9f8f8 !important;
-    color: #6c7989 !important;
+    color: #0d6efdc2 !important;
     font-weight: 600;
 }
 
@@ -195,6 +195,11 @@ table tbody tr td {
 
 .loginPerfil:hover {
     background:#e7e7e7 !important;
+}
+
+
+.text-muted {
+    color: #0d6efdc2 !important;
 }
 
 
